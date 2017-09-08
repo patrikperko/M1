@@ -31,13 +31,25 @@ public class Person2 {
 	 */
 	private String calc(String input) {
 	  //Person 2 put your implementation here
-	  List<String> letter = Arrays.asList(input.split(""));
-	  Collections.shuffle(letter);
-	  String ran = "";
-	  for (String l : letter) {
-	  	ran += letter;
+	  List<Character> l = new ArrayList<>();
+	  for (char c : input.toCharArray()){
+	  	l.add(c);
 	  }
-	  return ran;
+	  Collections.shuffle(l);
+	  StringBuilder a = new StringBuilder();
+	  for(char c : l) {
+	  	a.append(c);
+	  }
+	  return a.toString();
+
+
+	  // List<String> letter = Arrays.asList(input.split(""));
+	  // Collections.shuffle(letter);
+	  // String ran = "";
+	  // for (String l : letter) {
+	  // 	ran += letter;
+	  // }
+	  // return ran;
 	}
 	/**
 	 * Return a string rep of this object

@@ -1,4 +1,5 @@
 package edu.gatech.oad.antlab.person;
+import java.util.*;
 /**
  *  A simple class for person 3
  *  returns their name and a
@@ -43,10 +44,7 @@ public class Person3 {
 	 */
 	private String calc(String input) {
 	  //Person 3 put your implementation here
-	  String a = "";
-	  for (int i = input.length() - 1; i >= 0; i--) {
-	  		a += String.valueOf(input.charAt(i-1));
-	  }
-	  return a;
+	  StringBuilder a = new StringBuilder(input);
+	  return a.reverse().toString();
 	}
 }
