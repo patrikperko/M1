@@ -7,22 +7,22 @@
     tools:context="edu.gatech.cs1332.ratattack.MainActivity">
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:fontFamily="casual"
         android:text="Welcome!"
+        android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.223"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.151"
-        app:layout_constraintHorizontal_bias="0.223"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="31dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="74dp" />
+        app:layout_constraintVertical_bias="0.151" />
 
     <Button
         android:id="@+id/signUpButton"
@@ -31,12 +31,10 @@
         android:text="Sign Up"
         tools:layout_editor_absoluteX="98dp"
         tools:layout_editor_absoluteY="241dp"
-        android:layout_marginTop="178dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp" />
+        android:layout_alignTop="@+id/loginButton"
+        android:layout_alignLeft="@+id/loginButton"
+        android:layout_alignStart="@+id/loginButton"
+        android:layout_marginTop="75dp" />
 
     <Button
         android:id="@+id/loginButton"
@@ -45,9 +43,32 @@
         android:text="Login"
         tools:layout_editor_absoluteY="125dp"
         tools:layout_editor_absoluteX="98dp"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/textView9"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="ヾ(o◕∀◕)ﾉ"
+        android:textSize="36sp"
+        android:textStyle="bold"
         android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/signUpButton"
-        android:layout_alignStart="@+id/signUpButton"
-        android:layout_marginTop="47dp" />
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:lineSpacingExtra="8sp"
+        android:text="RAAAAAAAAAAAT"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
