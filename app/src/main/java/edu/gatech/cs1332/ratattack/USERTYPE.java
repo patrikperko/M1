@@ -5,4 +5,6 @@ package edu.gatech.cs1332.ratattack;
  */
 
 public enum USERTYPE {
+    User,
+    Admin
 }
