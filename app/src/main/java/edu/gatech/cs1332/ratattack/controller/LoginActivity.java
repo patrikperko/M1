@@ -1,14 +1,15 @@
-package edu.gatech.cs1332.ratattack;
+package edu.gatech.cs1332.ratattack.controller;
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.app.AlertDialog;
+
+import edu.gatech.cs1332.ratattack.R;
+import edu.gatech.cs1332.ratattack.model.Database;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,7 +27,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username1 = username.getText().toString();
                 String password1 = password.getText().toString();
-                if(password1.equals("pass") && username1.equals("user")) {
+                Database data = Database.getInstance();
+                if(data.signIn(username1, password1)) {
                     Intent i = new Intent(LoginActivity.this,activity_loginsuccessful.class);
                     LoginActivity.this.startActivity(i);
                 } else {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.gatech.cs1332.ratattack.activity_signup">
+    tools:context="edu.gatech.cs1332.ratattack.controller.activity_signup">
 
     <TextView
         android:id="@+id/textView9"
@@ -33,7 +33,7 @@
         android:layout_marginTop="13dp" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/usernameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -42,8 +42,8 @@
         tools:layout_editor_absoluteY="100dp"
         android:layout_marginTop="15dp"
         android:layout_below="@+id/textView10"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:layout_alignLeft="@+id/emailButton"
+        android:layout_alignStart="@+id/emailButton" />
 
     <TextView
         android:id="@+id/textView11"
@@ -53,9 +53,9 @@
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="152dp"
         android:layout_marginTop="15dp"
-        android:layout_below="@+id/editText3"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignStart="@+id/editText3" />
+        android:layout_below="@+id/usernameButton"
+        android:layout_alignLeft="@+id/usernameButton"
+        android:layout_alignStart="@+id/usernameButton" />
 
     <TextView
         android:id="@+id/textView12"
@@ -65,12 +65,12 @@
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="232dp"
         android:layout_marginTop="17dp"
-        android:layout_below="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:layout_below="@+id/emailButton"
+        android:layout_alignLeft="@+id/emailButton"
+        android:layout_alignStart="@+id/emailButton" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/confirmButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -89,13 +89,13 @@
         android:text="Confirm pass word"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="317dp"
-        android:layout_below="@+id/editText8"
-        android:layout_alignLeft="@+id/editText8"
-        android:layout_alignStart="@+id/editText8"
+        android:layout_below="@+id/passButton"
+        android:layout_alignLeft="@+id/passButton"
+        android:layout_alignStart="@+id/passButton"
         android:layout_marginTop="15dp" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/passButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -108,19 +108,19 @@
         android:layout_alignStart="@+id/textView12" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/signButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cancelButton"
+        android:layout_alignBottom="@+id/cancelButton"
+        android:layout_alignLeft="@+id/confirmButton"
+        android:layout_alignStart="@+id/confirmButton"
         android:text="Sign Up"
         tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="406dp"
-        android:layout_alignBaseline="@+id/button5"
-        android:layout_alignBottom="@+id/button5"
-        android:layout_alignLeft="@+id/editText7"
-        android:layout_alignStart="@+id/editText7" />
+        tools:layout_editor_absoluteY="406dp" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel"
@@ -128,11 +128,11 @@
         tools:layout_editor_absoluteY="406dp"
         android:layout_marginBottom="49dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText7"
-        android:layout_alignEnd="@+id/editText7" />
+        android:layout_alignRight="@+id/confirmButton"
+        android:layout_alignEnd="@+id/confirmButton" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/emailButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.gatech.cs1332.ratattack.LoginActivity">
+    tools:context="edu.gatech.cs1332.ratattack.controller.LoginActivity">
     <TextView
         android:id="@+id/textView3"
         android:layout_width="100dp"

@@ -3,7 +3,7 @@
     android:id="@+id/fragmentid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.gatech.cs1332.ratattack.NavigationFragment">
+    tools:context="edu.gatech.cs1332.ratattack.controller.NavigationFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
