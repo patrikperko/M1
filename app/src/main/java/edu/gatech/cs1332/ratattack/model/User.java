@@ -1,5 +1,5 @@
 package edu.gatech.cs1332.ratattack.model;
-
+import edu.gatech.cs1332.ratattack.USERTYPE;
 /**
  * Created by Brent on 10/1/2017.
  */
@@ -13,6 +13,7 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private USERTYPE useridentity;
 
     /**
      * Constructs a User instance and sets the User's name, email and password.
@@ -20,11 +21,13 @@ public class User {
      * @param _name the name of the user.
      * @param _email the email of the user.
      * @param _password the password of the user.
+     * @param _useridentity the type of user: admin/user
      */
-    public User(String _name, String _email, String _password) {
+    public User(String _name, String _email, String _password, USERTYPE _useridentity) {
         name = _name;
         email = _email;
         password = _password;
+        useridentity = _useridentity;
     }
 
     /**
@@ -53,4 +56,10 @@ public class User {
     public String getPassword() {
         return password;
     }
+    /**
+     * Gets the identity of the User.
+     *
+     * @return the identity of user
+     */
+    public USERTYPE getUseridentity() {return useridentity;}
 }
