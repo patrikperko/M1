@@ -11,8 +11,18 @@ import android.widget.EditText;
 import edu.gatech.cs1332.ratattack.R;
 import edu.gatech.cs1332.ratattack.model.Database;
 
+/**
+ * The login activity used to allow an existing user to access the
+ * loginsuccessful activity
+ */
 public class LoginActivity extends AppCompatActivity {
 
+    /**
+     * Creates a LoginActivity, adding login text fields and button listeners
+     * so that a user can login
+     *
+     * @param savedInstanceState the Bundle used for onCreate()
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

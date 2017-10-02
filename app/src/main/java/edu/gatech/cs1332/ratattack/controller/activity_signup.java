@@ -12,8 +12,18 @@ import edu.gatech.cs1332.ratattack.R;
 import edu.gatech.cs1332.ratattack.model.Database;
 import edu.gatech.cs1332.ratattack.model.User;
 
+/**
+ * The signup activity used to add a user to the database.
+ */
 public class activity_signup extends AppCompatActivity {
 
+    /**
+     * Creates a signup activity, allowing a new user to create login credentials
+     * by filling out EditText fields and setting listeners for the Sign-up and
+     * Cancel Buttons.
+     *
+     * @param savedInstanceState the Bundle used for onCreate()
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
