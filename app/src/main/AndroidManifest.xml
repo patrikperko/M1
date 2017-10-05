@@ -17,8 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.LoginActivity" />
-        <activity android:name=".controller.activity_loginsuccessful" />
-        <activity android:name=".controller.activity_signup"></activity>
+        <activity android:name=".controller.activity_loginsuccessful"
+            android:noHistory="true"/>
+        <activity android:name=".controller.activity_signup"
+            android:noHistory="true"></activity>
     </application>
 
 </manifest>
