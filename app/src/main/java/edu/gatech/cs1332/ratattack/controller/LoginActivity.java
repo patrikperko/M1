@@ -10,9 +10,20 @@ import android.widget.EditText;
 
 import edu.gatech.cs1332.ratattack.R;
 import edu.gatech.cs1332.ratattack.model.Database;
+import edu.gatech.cs1332.ratattack.model.Databasestore;
 
+/**
+ * The login activity used to allow an existing user to access the
+ * loginsuccessful activity
+ */
 public class LoginActivity extends AppCompatActivity {
-
+    Databasestore search = new Databasestore(this);
+    /**
+     * Creates a LoginActivity, adding login text fields and button listeners
+     * so that a user can login
+     *
+     * @param savedInstanceState the Bundle used for onCreate()
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +38,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username1 = username.getText().toString();
                 String password1 = password.getText().toString();
-                Database data = Database.getInstance();
-                if(data.signIn(username1, password1)) {
+                String pass = search.searchPass(username1);
+//                Database data = Database.getInstance();
+                if(pass.equals(password1)) {
                     Intent i = new Intent(LoginActivity.this,activity_loginsuccessful.class);
+                    i.putExtra("Username",username1);
                     LoginActivity.this.startActivity(i);
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);

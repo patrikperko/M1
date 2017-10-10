@@ -26,25 +26,34 @@
 
     <Button
         android:id="@+id/signUpButton"
-        android:layout_width="150dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/shape"
+        android:fontFamily="sans-serif"
         android:text="Sign Up"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp"
         tools:layout_editor_absoluteX="98dp"
         tools:layout_editor_absoluteY="241dp"
-        android:layout_alignTop="@+id/loginButton"
+        android:layout_marginBottom="43dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/loginButton"
-        android:layout_alignStart="@+id/loginButton"
-        android:layout_marginTop="75dp" />
+        android:layout_alignStart="@+id/loginButton" />
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="150dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/shape"
+        android:bottomLeftRadius="7dp"
+        android:fontFamily="sans-serif"
         android:text="Login"
-        tools:layout_editor_absoluteY="125dp"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp"
         tools:layout_editor_absoluteX="98dp"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/textView9"
+        tools:layout_editor_absoluteY="125dp"
+        android:layout_marginBottom="63dp"
+        android:layout_alignBottom="@+id/signUpButton"
         android:layout_centerHorizontal="true" />
 
     <TextView

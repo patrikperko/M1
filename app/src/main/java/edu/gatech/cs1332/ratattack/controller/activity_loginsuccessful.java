@@ -3,13 +3,34 @@ package edu.gatech.cs1332.ratattack.controller;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.net.Uri;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.widget.BottomNavigationView;
+import  android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.support.v4.app.FragmentActivity;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.gatech.cs1332.ratattack.R;
 
+/**
+ * The loginsuccessful activity that serves as a landing activity for the login activity.
+ * It is not accessible from other activities
+ */
 public class activity_loginsuccessful extends AppCompatActivity implements NavigationFragment.OnFragmentInteractionListener {
 
+    /**
+     * Creates a loginsuccessful activity and adds a navigation fragment to the activity
+     *
+     * @param savedInstanceState the bundle used for onCreate()
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +43,47 @@ public class activity_loginsuccessful extends AppCompatActivity implements Navig
         ft.commit();
 
 
+        readratdata();
     }
+    private List<readrat> rats = new ArrayList<>();
+    private void readratdata() {
+        InputStream is = getResources().openRawResource(R.raw.ratsightings);
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(is, Charset.forName("UTF-8"))
+        );
+        String line ="";
+        try {
+            //get rid of the header
+            reader.readLine();
+            while ((line = reader.readLine())!= null) {
+                //debug the line
+                //Log.d("Myactivity","Line" + line);
+                //split column
+                String[] tokens = line.split(",");
+                line = line.replaceAll(",,",",NotAvailable,");
+                //read data
+                readrat newrat = new readrat();
+                newrat.setUniquekey(tokens[0]);
+                newrat.setCreate_date(tokens[1]);
+                newrat.setLocation_type(tokens[7]);
+                newrat.setIncident_zip(tokens[8]);
+                newrat.setIncident_address(tokens[9]);
+                newrat.setCity(tokens[16]);
+                newrat.setBorough(tokens[23]);
+                newrat.setLatitude(tokens[35]);
+                newrat.setLongtitude(tokens[36]);
+                rats.add(newrat);
+                Log.d("after login", "created:" + newrat);
+
+            }
+        } catch(IOException e) {
+            Log.wtf("LoginSuccessfully", "Error reading data on line" + line, e);
+            e.printStackTrace();
+        }
+
+    }
+
+
 
     public void onFragmentInteraction(Uri uri) {
 
