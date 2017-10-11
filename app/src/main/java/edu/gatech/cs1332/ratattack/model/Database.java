@@ -16,9 +16,11 @@ public class Database {
     public static Database getInstance() {return instance;}
 
     private List<User> users;
+    private List<Rat> rats;
 
     Database() {
         users = new ArrayList<>();
+        rats = new ArrayList<>();
     }
 
     /**
@@ -28,6 +30,18 @@ public class Database {
      */
     public void addUser(User newUser) {
         users.add(newUser);
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void addRat(Rat newRat) {
+        rats.add(newRat);
+    }
+
+    public List<Rat> getRats() {
+        return rats;
     }
 
     /**

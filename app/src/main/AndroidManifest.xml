@@ -17,19 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.LoginActivity" />
-<<<<<<< HEAD
         <activity android:name=".controller.activity_loginsuccessful" />
         <activity android:name=".controller.activity_signup" />
-        <activity
-            android:name=".Shape_button"
-            android:label="@string/title_activity_shape_button"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-=======
-        <activity android:name=".controller.activity_loginsuccessful"
-            android:noHistory="true"/>
-        <activity android:name=".controller.activity_signup"
-            android:noHistory="true"/>
->>>>>>> 33ba5f5e839ece558157ee4590aac2ea201ab5cc
+        <activity android:name=".controller.RatDataActivity"></activity>
     </application>
 
 </manifest>

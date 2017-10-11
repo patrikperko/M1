@@ -1,0 +1,47 @@
+package edu.gatech.cs1332.ratattack.controller;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.gatech.cs1332.ratattack.R;
+import edu.gatech.cs1332.ratattack.model.Database;
+import edu.gatech.cs1332.ratattack.model.Rat;
+
+public class RatDataActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_rat_data);
+
+        String[] values = new String[] { "Android List View",
+                "Adapter implementation",
+                "Simple List View In Android",
+                "Create List View Android",
+                "Android Example",
+                "List View Source Code",
+                "List View Array Adapter",
+                "Android Example List View"
+        };
+
+
+        ListView listView = (ListView) findViewById(R.id.list_view);
+        List<Rat> ratList = Database.getInstance().getRats();
+
+        List<String> ratListHeader = new ArrayList<String>();
+
+        for (int i = 0; i < ratList.size(); ++i) {
+            ratListHeader.add("Rat Sighting #" + ratList.get(i).getUniquekey());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_list_item_1, android.R.id.text1, ratListHeader);
+
+        listView.setAdapter(adapter);
+    }
+}
