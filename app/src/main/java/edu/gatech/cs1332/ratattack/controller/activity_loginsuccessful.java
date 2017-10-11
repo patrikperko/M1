@@ -2,6 +2,7 @@ package edu.gatech.cs1332.ratattack.controller;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.net.Uri;
 //import android.support.design.internal.BottomNavigationItemView;
 //import android.support.design.widget.BottomNavigationView;
@@ -10,6 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.Button;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,6 +48,15 @@ public class activity_loginsuccessful extends AppCompatActivity implements Navig
         ft.replace(R.id.fragment, fr);
         ft.commit();
 
+        Button ratDataButton = (Button) findViewById(R.id.ratDataButton);
+
+        ratDataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(activity_loginsuccessful.this, RatDataActivity.class);
+                activity_loginsuccessful.this.startActivity(i);
+            }
+        });
 
         readratdata();
     }
