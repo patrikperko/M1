@@ -19,7 +19,12 @@
         <activity android:name=".controller.LoginActivity" />
         <activity android:name=".controller.activity_loginsuccessful" />
         <activity android:name=".controller.activity_signup" />
-        <activity android:name=".controller.RatDataActivity"></activity>
+        <activity android:name=".controller.RatDataActivity" />
+        <activity android:name=".controller.activity_ratdatadetails" />
+        <activity
+            android:name=".controller.activity_ratdatadetail"
+            android:label="@string/title_activity_ratdatadetail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

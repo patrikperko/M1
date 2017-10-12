@@ -1,9 +1,14 @@
 package edu.gatech.cs1332.ratattack.controller;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,5 +48,13 @@ public class RatDataActivity extends AppCompatActivity {
                 (this, android.R.layout.simple_list_item_1, android.R.id.text1, ratListHeader);
 
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(), activity_ratdatadetails.class);
+                i.putExtra("key", Database.getInstance().getRats().get(position));
+                getApplicationContext().startActivity(i);
+            }
+        });
     }
 }
