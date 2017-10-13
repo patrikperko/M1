@@ -7,6 +7,7 @@ import android.net.Uri;
 //import android.support.design.internal.BottomNavigationItemView;
 //import android.support.design.widget.BottomNavigationView;
 //import  android.support.design.widget.NavigationView;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +38,10 @@ public class activity_loginsuccessful extends AppCompatActivity implements Navig
      *
      * @param savedInstanceState the bundle used for onCreate()
      */
+
+    private List<Rat> rats = new ArrayList<>();
+    Database data = Database.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,46 +63,91 @@ public class activity_loginsuccessful extends AppCompatActivity implements Navig
             }
         });
 
-        readratdata();
+        new CSVFile().execute(rats);
     }
-    private List<Rat> rats = new ArrayList<>();
-    Database data = Database.getInstance();
-    private void readratdata() {
-        InputStream is = getResources().openRawResource(R.raw.ratsightings);
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(is, Charset.forName("UTF-8"))
-        );
-        String line ="";
-        try {
-            //get rid of the header
-            reader.readLine();
-            while ((line = reader.readLine())!= null) {
-                //debug the line
-                //Log.d("Myactivity","Line" + line);
-                //split column
-                String[] tokens = line.split(",");
-                line = line.replaceAll(",,",",NotAvailable,");
-                //read data
-                Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[35], tokens[36]);
-//                newrat.setUniquekey(tokens[0]);
-//                newrat.setCreate_date(tokens[1]);
-//                newrat.setLocation_type(tokens[7]);
-//                newrat.setIncident_zip(tokens[8]);
-//                newrat.setIncident_address(tokens[9]);
-//                newrat.setCity(tokens[16]);
-//                newrat.setBorough(tokens[23]);
-//                newrat.setLatitude(tokens[35]);
-//                newrat.setLongtitude(tokens[36]);
-                data.addRat(newrat);
-                rats.add(newrat);
-                Log.d("after login", "created:" + newrat);
+
+    private class CSVFile extends AsyncTask<List<Rat>, Void, List<Rat>> {
+
+
+        @Override
+        protected List<Rat> doInBackground(List<Rat>... params) {
+            InputStream is = getResources().openRawResource(R.raw.ratsightings);
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8"))
+            );
+            String line ="";
+            try {
+                //get rid of the header
+                reader.readLine();
+                while ((line = reader.readLine())!= null) {
+                    //debug the line
+                    //Log.d("Myactivity","Line" + line);
+                    //split column
+                    String[] tokens = line.split(",");
+                    line = line.replaceAll(",,",",NotAvailable,");
+                    //read data
+                    Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[35], tokens[36]);
+                    data.addRat(newrat);
+                    rats.add(newrat);
+                    Log.d("after login", "created:" + newrat);
+                }
+            } catch(IOException e) {
+                Log.wtf("LoginSuccessfully", "Error reading data on line" + line, e);
+                e.printStackTrace();
             }
-        } catch(IOException e) {
-            Log.wtf("LoginSuccessfully", "Error reading data on line" + line, e);
-            e.printStackTrace();
+            return rats;
         }
 
+        @Override
+        protected void onPostExecute(List<Rat> result) {
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
     }
+
+//    private void readratdata() {
+//        InputStream is = getResources().openRawResource(R.raw.ratsightings);
+//        BufferedReader reader = new BufferedReader(
+//                new InputStreamReader(is, Charset.forName("UTF-8"))
+//        );
+//        String line ="";
+//        try {
+//            //get rid of the header
+//            reader.readLine();
+//            while ((line = reader.readLine())!= null) {
+//                //debug the line
+//                //Log.d("Myactivity","Line" + line);
+//                //split column
+//                String[] tokens = line.split(",");
+//                line = line.replaceAll(",,",",NotAvailable,");
+//                //read data
+//                Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[35], tokens[36]);
+////                newrat.setUniquekey(tokens[0]);
+////                newrat.setCreate_date(tokens[1]);
+////                newrat.setLocation_type(tokens[7]);
+////                newrat.setIncident_zip(tokens[8]);
+////                newrat.setIncident_address(tokens[9]);
+////                newrat.setCity(tokens[16]);
+////                newrat.setBorough(tokens[23]);
+////                newrat.setLatitude(tokens[35]);
+////                newrat.setLongtitude(tokens[36]);
+//                data.addRat(newrat);
+//                rats.add(newrat);
+//                Log.d("after login", "created:" + newrat);
+//            }
+//        } catch(IOException e) {
+//            Log.wtf("LoginSuccessfully", "Error reading data on line" + line, e);
+//            e.printStackTrace();
+//        }
+//
+//    }
 
 
 
