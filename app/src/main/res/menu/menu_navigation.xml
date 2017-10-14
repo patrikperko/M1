@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/homebutton"
+        android:title="@string/Home"
+        android:icon="@drawable/ic_home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:title="@string/Report_Sightings"
+        android:id="@+id/reportbutton"
+        android:icon="@drawable/ic_report"
+        app:showAsAction="ifRoom" />
+    <item
+        android:title="@string/View_Sightings"
+        android:id="@+id/viewbutton"
+        android:icon="@drawable/ic_viewsightings"
+        app:showAsAction="ifRoom" />
+    <item
+        android:title="@string/Mark_Locations"
+        android:id="@+id/locationbutton"
+        android:icon = "@drawable/ic_location"
+        app:showAsAction="ifRoom"/>
+
+
+
+
+
+</menu>

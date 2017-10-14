@@ -4,59 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/loginsuccessful"
     tools:context="edu.gatech.cs1332.ratattack.controller.activity_loginsuccessful">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:text="Congratulations!!"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="84dp"
-        android:layout_marginTop="21dp"
-        android:layout_below="@+id/button"
-        android:layout_alignRight="@+id/textView7"
-        android:layout_alignEnd="@+id/textView7" />
+    <FrameLayout
+        android:id="@+id/loginsuccessful_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigation"
+        android:animateLayoutChanges="true">
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
+
+    </FrameLayout>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:text="Login Successful!!"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="246dp"
-        android:layout_marginTop="21dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+        app:menu="@menu/menu_navigation"/>
+
+    <Button
+        android:id="@+id/ratDataButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/textView8"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="120dp"
+        android:text="Display Rat Sightings" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:text="o(*≧▽≦)ツ"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="173dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="edu.gatech.cs1332.ratattack.controller.NavigationFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/textView6"
-        android:layout_alignParentBottom="true" />
+
+
+
+
 
 </RelativeLayout>
