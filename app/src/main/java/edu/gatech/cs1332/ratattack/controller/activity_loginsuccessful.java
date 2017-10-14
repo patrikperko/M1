@@ -47,7 +47,6 @@ public class activity_loginsuccessful extends AppCompatActivity implements Navig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loginsuccessful);
         NavigationFragment fr = new NavigationFragment();
-        //fr.setArguments(args);
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment, fr);

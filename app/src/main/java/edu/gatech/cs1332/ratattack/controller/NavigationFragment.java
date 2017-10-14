@@ -74,6 +74,11 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
             case R.id.logoutbutton:
                 getActivity().finish();
                 break;
+            case R.id.ratDataButton:
+                Intent i = new Intent(getActivity(), RatDataActivity.class);
+                getActivity().startActivity(i);
+                break;
+
         }
     }
 
@@ -84,6 +89,8 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
         FrameLayout fl = (FrameLayout)inflater.inflate(R.layout.fragment_navigation, container, false);
         Button logout = (Button) fl.findViewById(R.id.logoutbutton);
         logout.setOnClickListener(this);
+        Button ratData = (Button) fl.findViewById(R.id.ratDataButton);
+        ratData.setOnClickListener(this);
         return fl;
         //return inflater.inflate(R.layout.fragment_navigation, container, false);
     }

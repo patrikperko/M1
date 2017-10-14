@@ -4,11 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.gatech.cs1332.ratattack.controller.RatDataActivity">
+    tools:context="edu.gatech.cs1332.ratattack.controller.RatDataActivity"
+    android:background="@android:color/transparent"
+    android:alpha="0.5">
 
     <ListView
         android:id="@+id/list_view"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="0dp"
+        android:background="@android:color/transparent"/>
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="edu.gatech.cs1332.ratattack.controller.NavigationFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        tools:layout_editor_absoluteY="90dp"
+        tools:layout_editor_absoluteX="0dp" />
 
 </android.support.constraint.ConstraintLayout>

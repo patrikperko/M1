@@ -1,6 +1,9 @@
 package edu.gatech.cs1332.ratattack.controller;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,12 +20,18 @@ import edu.gatech.cs1332.ratattack.R;
 import edu.gatech.cs1332.ratattack.model.Database;
 import edu.gatech.cs1332.ratattack.model.Rat;
 
-public class RatDataActivity extends AppCompatActivity {
+public class RatDataActivity extends AppCompatActivity implements NavigationFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_data);
+
+        NavigationFragment fr = new NavigationFragment();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment, fr);
+        ft.commit();
 
         String[] values = new String[] { "Android List View",
                 "Adapter implementation",
@@ -56,5 +65,9 @@ public class RatDataActivity extends AppCompatActivity {
                 getApplicationContext().startActivity(i);
             }
         });
+    }
+
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
