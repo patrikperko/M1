@@ -1,5 +1,6 @@
 package edu.gatech.cs1332.ratattack.controller;
 
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
@@ -33,6 +34,9 @@ import android.view.MenuItem;
  * It is not accessible from other activities
  */
 public class activity_loginsuccessful extends AppCompatActivity {
+
+    private List<Rat> rats = new ArrayList<>();
+    Database data = Database.getInstance();
 
     /**
      * Creates a loginsuccessful activity and adds a navigation fragment to the activity
@@ -86,37 +90,83 @@ public class activity_loginsuccessful extends AppCompatActivity {
             }
         });
 
-        readratdata();
+        new CSVFile().execute();
     }
-    private List<Rat> rats = new ArrayList<>();
-    Database data = Database.getInstance();
-    private void readratdata() {
-        InputStream is = getResources().openRawResource(R.raw.ratsightings);
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(is, Charset.forName("UTF-8"))
-        );
-        String line ="";
-        try {
-            //get rid of the header
-            reader.readLine();
-            while ((line = reader.readLine())!= null) {
-                //debug the line
-                //Log.d("Myactivity","Line" + line);
-                //split column
-                String[] tokens = line.split(",");
-                line = line.replaceAll(",,",",NotAvailable,");
-                //read data
-                Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[35], tokens[36]);
-                data.addRat(newrat);
-                rats.add(newrat);
-                Log.d("after login", "created:" + newrat);
+
+    private class CSVFile extends AsyncTask<List<Rat>, Void, List<Rat>> {
+
+
+        @Override
+        protected List<Rat> doInBackground(List<Rat>... params) {
+            InputStream is = getResources().openRawResource(R.raw.ratsightings);
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8"))
+            );
+            String line ="";
+            try {
+                //get rid of the header
+                reader.readLine();
+                while ((line = reader.readLine())!= null) {
+                    //debug the line
+                    //Log.d("Myactivity","Line" + line);
+                    //split column
+                    String[] tokens = line.split(",");
+                    line = line.replaceAll(",,",",NotAvailable,");
+                    //read data
+                    Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[35], tokens[36]);
+                    data.addRat(newrat);
+                    rats.add(newrat);
+                    Log.d("after login", "created:" + newrat);
+                }
+            } catch(IOException e) {
+                Log.wtf("LoginSuccessfully", "Error reading data on line" + line, e);
+                e.printStackTrace();
             }
-        } catch(IOException e) {
-            Log.wtf("LoginSuccessfully", "Error reading data on line" + line, e);
-            e.printStackTrace();
+            return rats;
         }
 
+        @Override
+        protected void onPostExecute(List<Rat> result) {
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
     }
+
+
+//    private void readratdata() {
+//        InputStream is = getResources().openRawResource(R.raw.ratsightings);
+//        BufferedReader reader = new BufferedReader(
+//                new InputStreamReader(is, Charset.forName("UTF-8"))
+//        );
+//        String line ="";
+//        try {
+//            //get rid of the header
+//            reader.readLine();
+//            while ((line = reader.readLine())!= null) {
+//                //debug the line
+//                //Log.d("Myactivity","Line" + line);
+//                //split column
+//                String[] tokens = line.split(",");
+//                line = line.replaceAll(",,",",NotAvailable,");
+//                //read data
+//                Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[35], tokens[36]);
+//                data.addRat(newrat);
+//                rats.add(newrat);
+//                Log.d("after login", "created:" + newrat);
+//            }
+//        } catch(IOException e) {
+//            Log.wtf("LoginSuccessfully", "Error reading data on line" + line, e);
+//            e.printStackTrace();
+//        }
+//
+//    }
 
 
 
