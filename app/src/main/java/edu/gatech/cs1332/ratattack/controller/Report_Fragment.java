@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import java.text.DateFormat;
 import java.util.Date;
+
+import edu.gatech.cs1332.ratattack.model.Database;
 import edu.gatech.cs1332.ratattack.model.Rat;
 import edu.gatech.cs1332.ratattack.R;
 import android.support.v4.app.FragmentTransaction;
@@ -50,6 +52,8 @@ public class Report_Fragment extends Fragment {
                 Rat newRat = new Rat(keyText.getText().toString(), DateFormat.getDateInstance().format(new Date()), locationText.getText()
                         .toString(), zipText.getText().toString(), addressText.getText().toString(), cityText.getText().toString(),
                         boroughText.getText().toString(), null, null);
+                Database.getInstance().addRat(newRat);
+                getActivity().getSupportFragmentManager().beginTransaction().remove(Report_Fragment.this).commit();
             }
         }
         });
