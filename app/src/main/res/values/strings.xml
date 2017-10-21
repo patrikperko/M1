@@ -2,6 +2,13 @@
     <string name="app_name">RatAttack</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_ratdatadetail">activity_ratdatadetail</string>
+    <string name="Home"> HOME </string>
+    <string name="Report_Sightings"> REPORT SIGHTINGS </string>
+    <string name="View_Sightings"> VIEW RATS </string>
+    <string name="Mark_Locations"> TARGET LOCATION </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--<string name="title_activity_ratdatadetail">activity_ratdatadetail</string>-->
 </resources>

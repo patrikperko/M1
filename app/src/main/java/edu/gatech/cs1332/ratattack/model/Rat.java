@@ -167,11 +167,11 @@ public class Rat implements Parcelable {
         this.Longtitude = Longtitude;
     }
 
-    @Override
-    public String toString() {
-        return "Rat: " + uniquekey + " is created on " + create_date + " with address: " +
-                incident_address + " zip: " + incident_zip + " city: " + city;
-    }
+//    @Override
+//    public String toString() {
+//        return "Rat: " + uniquekey + " is created on " + create_date + " with address: " +
+//                incident_address + " zip: " + incident_zip + " city: " + city;
+//    }
 
     @Override
     public int describeContents() {
