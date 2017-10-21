@@ -61,10 +61,8 @@ public class Report_Fragment extends Fragment {
             @Override
             public void onClick(View view)
             {
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.reportfragment, new Home_Fragment(), "NewFragmentTag");
-                ft.commit();
-                ft.addToBackStack(null);
+                getActivity().onBackPressed();
+
             }
         });
         return rootView;
