@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -66,12 +67,10 @@ public class view_fragment extends Fragment {
 
 
         ListView listView = (ListView)v.findViewById(R.id.ratdatalist);
-        final List<Rat> ratList = Database.getInstance().getRats();
+        List<Rat> ratList = Database.getInstance().getRats();
 
-
-
-        for (Rat i: ratList) {
-            ratListHeader.add("Rat Sighting #" + i.getUniquekey());
+        for (int i = 0; i < ratList.size(); ++i) {
+            ratListHeader.add("Rat Sighting #" + ratList.get(i).getUniquekey());
         }
 
         adapter = new ArrayAdapter<String> (
