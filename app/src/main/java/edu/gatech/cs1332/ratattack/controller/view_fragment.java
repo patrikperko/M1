@@ -30,6 +30,7 @@ import edu.gatech.cs1332.ratattack.model.Rat;
 
 public class view_fragment extends Fragment {
     private List<Rat> rats = new ArrayList<>();
+    private List<Rat> ratList = new ArrayList<>();
     Database data = Database.getInstance();
     private String[] values = new String[] { "Android List View",
             "Adapter implementation",
@@ -56,7 +57,7 @@ public class view_fragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_view_fragment, container, false);
         ListView listView = (ListView)v.findViewById(R.id.ratdatalist);
-        List<Rat> ratList = Database.getInstance().getRats();
+        ratList = Database.getInstance().getRats();
 
         List<String> ratListHeader = new ArrayList<String>();
 

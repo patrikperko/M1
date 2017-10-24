@@ -37,7 +37,7 @@ public class Database {
     }
 
     public void addRat(Rat newRat) {
-        rats.add(newRat);
+        rats.add(0, newRat);
     }
 
     public List<Rat> getRats() {

@@ -2,6 +2,7 @@ package edu.gatech.cs1332.ratattack.controller;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,23 +47,27 @@ public class Report_Fragment extends Fragment {
         report.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (locationText.getText().toString().trim().length() > 0 && zipText.getText().toString().trim().length() > 0 &&
-                    cityText.getText().toString().trim().length() > 0 && addressText.getText().toString().trim().length() > 0 &&
-                    boroughText.getText().toString().trim().length() > 0 && keyText.getText().toString().trim().length() > 0) {
+//            if (locationText.getText().toString().trim().length() > 0 && zipText.getText().toString().trim().length() > 0 &&
+//                    cityText.getText().toString().trim().length() > 0 && addressText.getText().toString().trim().length() > 0 &&
+//                    boroughText.getText().toString().trim().length() > 0 && keyText.getText().toString().trim().length() > 0) {
                 Rat newRat = new Rat(keyText.getText().toString(), DateFormat.getDateInstance().format(new Date()), locationText.getText()
                         .toString(), zipText.getText().toString(), addressText.getText().toString(), cityText.getText().toString(),
                         boroughText.getText().toString(), null, null);
                 Database.getInstance().addRat(newRat);
                 getActivity().getSupportFragmentManager().beginTransaction().remove(Report_Fragment.this).commit();
-            }
+//            }
         }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                getActivity().onBackPressed();
-
+                locationText.setText(null);
+                zipText.setText(null);
+                addressText.setText(null);
+                cityText.setText(null);
+                boroughText.setText(null);
+                keyText.setText(null);
             }
         });
         return rootView;
