@@ -13,7 +13,8 @@ public class activity_ratdatadetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ratdatadetails);
-
+//        Bundle bundle = getIntent().getExtras();
+//        Rat details = bundle.getParcelable("key");
         Rat details = (Rat) getIntent().getParcelableExtra("key");
 
 
@@ -28,6 +29,6 @@ public class activity_ratdatadetails extends AppCompatActivity {
         TextView borough = (TextView) findViewById(R.id.key);
         borough.setText(details.getBorough());
         TextView coord = (TextView) findViewById(R.id.coordinates);
-        coord.setText("Longitude: " + details.getLongtitude() + "Latitude: " + details.getLatitude());
+        coord.setText("Latitude: " + details.getLatitude() + "Longitude: " + details.getLongitude());
     }
 }

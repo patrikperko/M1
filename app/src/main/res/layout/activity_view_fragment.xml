@@ -5,11 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="edu.gatech.cs1332.ratattack.controller.view_fragment">
-
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/searchFilter"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
     <ListView
         android:id="@+id/ratdatalist"
-        android:layout_width="wrap_content"
-        android:layout_height="495dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/searchFilter"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="0dp" />
 

@@ -16,7 +16,8 @@ public class Rat implements Parcelable {
     private String city;
     private String borough;
     private String Latitude;
-    private String Longtitude;
+    private String Longitude;
+
 
 
     /**
@@ -41,7 +42,7 @@ public class Rat implements Parcelable {
         city = cy;
         borough = bh;
         Latitude = lat;
-        Longtitude = lon;
+        Longitude = lon;
     }
 
     public String getUniquekey() {
@@ -154,24 +155,23 @@ public class Rat implements Parcelable {
     }
 
     /**
-     * @return Longtitude the Longtitude of the sighting
+     * @return Longitude the Longitude of the sighting
      */
-    public String getLongtitude() {
-        return Longtitude;
+    public String getLongitude() {
+        return Longitude;
     }
 
     /**
-     * @param Longtitude the Longtitude of the sighting
+     * @param Longitude the Longitude of the sighting
      */
-    public void setLongtitude(String Longtitude) {
-        this.Longtitude = Longtitude;
+    public void setLongitude(String Longitude) {
+        this.Longitude = Longitude;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Rat: " + uniquekey + " is created on " + create_date + " with address: " +
-//                incident_address + " zip: " + incident_zip + " city: " + city;
-//    }
+    @Override
+    public String toString() {
+        return "Rat: " + uniquekey;
+    }
 
     @Override
     public int describeContents() {
@@ -188,7 +188,7 @@ public class Rat implements Parcelable {
         parcel.writeString(city);
         parcel.writeString(borough);
         parcel.writeString(Latitude);
-        parcel.writeString(Longtitude);
+        parcel.writeString(Longitude);
     }
 
     public Rat(Parcel in) {
@@ -200,7 +200,7 @@ public class Rat implements Parcelable {
         city = in.readString();
         borough = in.readString();
         Latitude = in.readString();
-        Longtitude = in.readString();
+        Longitude = in.readString();
     }
 
     public static final Parcelable.Creator<Rat> CREATOR = new Parcelable.Creator<Rat>() {

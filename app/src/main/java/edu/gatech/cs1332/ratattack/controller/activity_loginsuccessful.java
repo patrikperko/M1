@@ -33,8 +33,8 @@ import android.view.MenuItem;
  * It is not accessible from other activities
  */
 public class activity_loginsuccessful extends AppCompatActivity {
-
     private List<Rat> rats = new ArrayList<>();
+    private List<String> ratHeaders = new ArrayList<>();
     Database data = Database.getInstance();
 
     /**
@@ -106,12 +106,14 @@ public class activity_loginsuccessful extends AppCompatActivity {
                     //debug the line
                     //Log.d("Myactivity","Line" + line);
                     //split column
-                    String[] tokens = line.split(",");
-                    line = line.replaceAll(",,",",NotAvailable,");
+                    //line = line.replaceAll(",,",",Not Available,");
+                    String[] tokens = line.split(",", -1);
+//                    System.out.println(line);
                     //read data
-                    Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[35], tokens[36]);
+                    Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[49], tokens[50]);
                     data.addRat(newrat);
                     rats.add(newrat);
+                    ratHeaders.add("Rat Report # " + tokens[0]);
                     Log.d("after login", "created:" + newrat);
                 }
             } catch(IOException e) {
@@ -120,6 +122,10 @@ public class activity_loginsuccessful extends AppCompatActivity {
             }
             return rats;
         }
+        public List<Rat> getRatlist() {
+            return rats;
+        }
+        public List<String> getratHeaders() {return ratHeaders;}
 
         @Override
         protected void onPostExecute(List<Rat> result) {
@@ -135,38 +141,4 @@ public class activity_loginsuccessful extends AppCompatActivity {
         }
     }
 
-
-    private void readratdata() {
-        InputStream is = getResources().openRawResource(R.raw.ratsightings);
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(is, Charset.forName("UTF-8"))
-        );
-        String line ="";
-        try {
-            //get rid of the header
-            reader.readLine();
-            while ((line = reader.readLine())!= null) {
-                //debug the line
-                //Log.d("Myactivity","Line" + line);
-                //split column
-                String[] tokens = line.split(",");
-                line = line.replaceAll(",,",",NotAvailable,");
-                //read data
-                Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[35], tokens[36]);
-                data.addRat(newrat);
-                rats.add(newrat);
-                Log.d("after login", "created:" + newrat);
-            }
-        } catch(IOException e) {
-            Log.wtf("LoginSuccessfully", "Error reading data on line" + line, e);
-            e.printStackTrace();
-        }
-
-    }
-
-
-
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }
