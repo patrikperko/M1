@@ -25,7 +25,7 @@ public class Report_Fragment extends Fragment {
     private EditText addressText;
     private EditText cityText;
     private EditText boroughText;
-    private EditText keyText;
+    //private EditText keyText;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -41,20 +41,25 @@ public class Report_Fragment extends Fragment {
         addressText = (EditText) rootView.findViewById(R.id.address);
         cityText = (EditText) rootView.findViewById(R.id.city);
         boroughText = (EditText) rootView.findViewById(R.id.borough);
-        keyText = (EditText) rootView.findViewById(R.id.key);
+        //keyText = (EditText) rootView.findViewById(R.id.key);
         final Button report = (Button) rootView.findViewById(R.id.report);
         final Button cancel = (Button) rootView.findViewById(R.id.reportcancel);
+        int upperBound = 49000000;
+        int lowerBound = 48000000;
+        int number = lowerBound + (int)(Math.random() * ((upperBound - lowerBound) + 1));
+        final String uniquekey = Integer.toString(number);
         report.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 //            if (locationText.getText().toString().trim().length() > 0 && zipText.getText().toString().trim().length() > 0 &&
 //                    cityText.getText().toString().trim().length() > 0 && addressText.getText().toString().trim().length() > 0 &&
 //                    boroughText.getText().toString().trim().length() > 0 && keyText.getText().toString().trim().length() > 0) {
-                Rat newRat = new Rat(keyText.getText().toString(), DateFormat.getDateInstance().format(new Date()), locationText.getText()
+                Rat newRat = new Rat(uniquekey, DateFormat.getDateInstance().format(new Date()), locationText.getText()
                         .toString(), zipText.getText().toString(), addressText.getText().toString(), cityText.getText().toString(),
                         boroughText.getText().toString(), null, null);
                 Database.getInstance().addRat(newRat);
                 getActivity().getSupportFragmentManager().beginTransaction().remove(Report_Fragment.this).commit();
+
 //            }
         }
         });
@@ -67,7 +72,6 @@ public class Report_Fragment extends Fragment {
                 addressText.setText(null);
                 cityText.setText(null);
                 boroughText.setText(null);
-                keyText.setText(null);
             }
         });
         return rootView;
