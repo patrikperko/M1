@@ -2,6 +2,7 @@ package edu.gatech.cs1332.ratattack.controller;
 
 
 import android.content.Intent;
+import android.location.Geocoder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +41,7 @@ public class location_fragment extends Fragment implements OnMapReadyCallback {
     MapView mMapView;
     View mView;
     Button ratDataButton;
+    Geocoder gc;
     public static location_fragment newInstance() {
         location_fragment fragment = new location_fragment();
         return fragment;
@@ -73,6 +75,16 @@ public class location_fragment extends Fragment implements OnMapReadyCallback {
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.addMarker(new MarkerOptions().position(new LatLng(40.7484,-73.9857)).title("lol").snippet("I found a rat!"));
         CameraPosition rat = CameraPosition.builder().target(new LatLng(40.7484,-73.9857)).zoom(16).bearing(0).tilt(45).build();
+
+        //The place where the loop to pin all the rats is
+        List<Rat> rats = Database.getInstance().getRats();
+        Geocoder gc = new Geocoder(getView().getContext());
+        for(Rat i : rats) {
+            Log.d("LocationFragment","Rat" + i.getUniquekey());
+            googleMap.addMarker(i.getMarker(gc));
+
+        }
+
         googleMap.moveCamera((CameraUpdateFactory.newCameraPosition(rat)));
 
     }

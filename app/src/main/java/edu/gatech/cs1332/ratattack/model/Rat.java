@@ -1,7 +1,15 @@
 package edu.gatech.cs1332.ratattack.model;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Brent on 10/10/2017.
@@ -216,4 +224,41 @@ public class Rat implements Parcelable {
             return new Rat[i];
         }
     };
+
+    //Returns True if the rat has Latitude/Longitude
+    public boolean validLoc() {
+        try {
+            Double.parseDouble(Latitude);
+            Double.parseDouble(Longtitude);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
+    //Creates and returns the marker
+    public MarkerOptions getMarker(Geocoder gc) {
+        MarkerOptions pointer;
+        double lat = 0;
+        double lon = 0;
+        if (validLoc()) {
+            lat = Double.parseDouble(Latitude);
+            lon = Double.parseDouble(Longtitude);
+        } else {
+            //geocoder stuff
+            try {
+                List<Address> add = gc.getFromLocationName(location_type
+                        + incident_zip + incident_address + city + borough, 1);
+                lat = add.get(0).getLatitude();
+                lon = add.get(0).getLongitude();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        pointer = new MarkerOptions()
+                .position(new LatLng(lat, lon)).title(uniquekey)
+                .title("rat" + uniquekey).snippet(incident_address + borough + city + incident_zip);
+        return pointer;
+    }
 }
