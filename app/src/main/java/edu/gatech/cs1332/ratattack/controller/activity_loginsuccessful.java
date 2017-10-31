@@ -108,10 +108,12 @@ public class activity_loginsuccessful extends AppCompatActivity {
                     //debug the line
                     //Log.d("Myactivity","Line" + line);
                     //split column
-                    String[] tokens = line.split(",");
-                    line = line.replaceAll(",,",",NotAvailable,");
+//                    String[] tokens = line.split(",");
+//                    line = line.replaceAll(",,",",NotAvailable,");
+                    String[] tokens = line.split(",", -1);
                     //read data
-                    Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[35], tokens[36]);
+//                    Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[35], tokens[36]);
+                    Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[49], tokens[50]);
                     data.addRat(newrat);
                     rats.add(newrat);
                     Log.d("after login", "created:" + newrat);
