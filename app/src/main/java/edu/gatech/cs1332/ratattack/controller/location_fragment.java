@@ -80,8 +80,11 @@ public class location_fragment extends Fragment implements OnMapReadyCallback {
         List<Rat> rats = Database.getInstance().getRats();
         Geocoder gc = new Geocoder(getView().getContext());
         for(Rat i : rats) {
-            Log.d("LocationFragment","Rat" + i.getUniquekey());
-            googleMap.addMarker(i.getMarker(gc));
+            MarkerOptions toAdd = i.getMarker(gc);
+            if (toAdd != null) {
+                Log.d("LocationFragment","Rat" + toAdd.getPosition().latitude + toAdd.getPosition().longitude);
+                googleMap.addMarker(i.getMarker(gc));
+            }
 
         }
 

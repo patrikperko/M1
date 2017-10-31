@@ -71,7 +71,9 @@ public class activity_loginsuccessful extends AppCompatActivity {
                         selectedFragment = view_fragment.newInstance();
                         break;
                     case R.id.locationbutton:
+                        Log.d("LocationFragment","test437");
                         selectedFragment = location_fragment.newInstance();
+                        Log.d("LocationFragment","test437");
                         break;
                     default:
                         break;

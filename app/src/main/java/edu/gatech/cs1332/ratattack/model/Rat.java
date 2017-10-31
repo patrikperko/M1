@@ -246,14 +246,18 @@ public class Rat implements Parcelable {
             lon = Double.parseDouble(Longtitude);
         } else {
             //geocoder stuff
+            List<Address> add = null;
             try {
-                List<Address> add = gc.getFromLocationName(location_type
+                add = gc.getFromLocationName(location_type
                         + incident_zip + incident_address + city + borough, 1);
-                lat = add.get(0).getLatitude();
-                lon = add.get(0).getLongitude();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            if (add.size() < 1) {
+                return null;
+            }
+            lat = add.get(0).getLatitude();
+            lon = add.get(0).getLongitude();
         }
 
         pointer = new MarkerOptions()
