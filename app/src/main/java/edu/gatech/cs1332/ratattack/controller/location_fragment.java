@@ -202,8 +202,8 @@ public class location_fragment extends Fragment implements OnMapReadyCallback{
 //
 //            }
 //        }
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(40,-73)).title("lol").snippet("I found a rat!"));
-        CameraPosition rat = CameraPosition.builder().target(new LatLng(40,-73)).zoom(16).bearing(0).tilt(45).build();
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.7484,-73.9857)).title("lol").snippet("I found a rat!"));
+        CameraPosition rat = CameraPosition.builder().target(new LatLng(40.7484,-73.9857)).zoom(16).bearing(0).tilt(45).build();
 
 
 
@@ -226,13 +226,14 @@ public class location_fragment extends Fragment implements OnMapReadyCallback{
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Log.d("date", ratdate);
+            //Log.d("date", report);
             if (!(ratdate.equals(null))) {
                 Date reportdate = c.getTime();
                 try {
                     reportdate = sdf.parse(report);
 
                 } catch (ParseException e) {
+                    System.out.println("cannot parse");
                     e.printStackTrace();
                 }
 //                Date before = c.getTime();
@@ -248,6 +249,7 @@ public class location_fragment extends Fragment implements OnMapReadyCallback{
 //                    e.printStackTrace();
 //                }
                 if (reportdate.before(date2) && reportdate.after(date1)) {
+                    System.out.println("works");
                     MarkerOptions toAdd = i.getMarker(gc);
                     if (toAdd != null) {
                         Log.d("LocationFragment","Rat" + toAdd.getPosition().latitude + toAdd.getPosition().longitude);
