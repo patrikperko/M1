@@ -16,6 +16,7 @@ import android.widget.EditText;
 
 public class Datepicker extends DialogFragment implements DatePickerDialog.OnDateSetListener{
     EditText txtDate;
+    String strdate;
     public Datepicker(View v){
         txtDate = (EditText)v;
     }
@@ -24,13 +25,20 @@ public class Datepicker extends DialogFragment implements DatePickerDialog.OnDat
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
+        SimpleDateFormat simpleformat = new SimpleDateFormat("MM/dd/yyyy");
+        strdate = simpleformat.format(c.getTime());
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
     public void onDateSet(DatePicker view, int year, int month, int day) {
         Calendar c = Calendar.getInstance();
         c.set(year,month,day);
-        SimpleDateFormat simpleformat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleformat = new SimpleDateFormat("MM/dd/yyyy");
         String date = simpleformat.format(c.getTime());
+        strdate = date;
         txtDate.setText(date);
+    }
+    public String gettxtdate() {
+        strdate = txtDate.getText().toString();
+        return strdate;
     }
 }

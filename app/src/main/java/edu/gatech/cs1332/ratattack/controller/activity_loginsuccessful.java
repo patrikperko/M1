@@ -116,7 +116,7 @@ public class activity_loginsuccessful extends AppCompatActivity {
                     Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[49], tokens[50]);
                     data.addRat(newrat);
                     rats.add(newrat);
-                    Log.d("after login", "created:" + newrat);
+//                    Log.d("after login", "created:" + newrat);
                 }
             } catch(IOException e) {
                 Log.wtf("LoginSuccessfully", "Error reading data on line" + line, e);
@@ -159,7 +159,7 @@ public class activity_loginsuccessful extends AppCompatActivity {
                 Rat newrat = new Rat(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], tokens[35], tokens[36]);
                 data.addRat(newrat);
                 rats.add(newrat);
-                Log.d("after login", "created:" + newrat);
+//                Log.d("after login", "created:" + newrat);
             }
         } catch(IOException e) {
             Log.wtf("LoginSuccessfully", "Error reading data on line" + line, e);

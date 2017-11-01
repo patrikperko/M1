@@ -1,13 +1,31 @@
 package edu.gatech.cs1332.ratattack.controller;
 
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
+
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.TextViewCompat;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,26 +33,60 @@ import android.widget.Button;
 
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import edu.gatech.cs1332.ratattack.R;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 
-public class location_fragment extends Fragment implements OnMapReadyCallback {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import javax.net.ssl.HttpsURLConnection;
+
+import edu.gatech.cs1332.ratattack.R;
+import edu.gatech.cs1332.ratattack.model.Database;
+import edu.gatech.cs1332.ratattack.model.Rat;
+
+
+public class location_fragment extends Fragment implements OnMapReadyCallback{
     GoogleMap mGoogleMap;
     MapView mMapView;
     View mView;
+    Context mContext;
+    protected LocationManager locationManager;
+    protected LocationListener locationListener;
+    Location location;
+    String latitude,longitude;
+    double lat, longt;
     Button ratDataButton;
     Geocoder gc;
+    String fromdate;
+    String todate;
     private static final String DIALOG_DATE = "date";
     private static final String DIALOG_DATE2 = "date";
+
     public static location_fragment newInstance() {
         location_fragment fragment = new location_fragment();
         return fragment;
@@ -43,6 +95,7 @@ public class location_fragment extends Fragment implements OnMapReadyCallback {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_view_fragment);
+
     }
 
 
@@ -62,6 +115,7 @@ public class location_fragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 Datepicker dialog = new Datepicker(v);
+                fromdate = dialog.gettxtdate();
                 dialog.show(getActivity().getFragmentManager(),DIALOG_DATE);
             }
         });
@@ -71,6 +125,7 @@ public class location_fragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 Datepicker dialog = new Datepicker(v);
+                todate = dialog.gettxtdate();
                 dialog.show(getActivity().getFragmentManager(),DIALOG_DATE2);
             }
         });
@@ -81,28 +136,135 @@ public class location_fragment extends Fragment implements OnMapReadyCallback {
             mMapView.onResume();
             mMapView.getMapAsync(this);
         }
+//        locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
+//        if (ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+//                    == PackageManager.PERMISSION_GRANTED) {
+//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+//        } else {
+//            Toast.makeText(getActivity(), "Map Available", Toast.LENGTH_LONG).show();
+//           if (ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+//                   == PackageManager.PERMISSION_GRANTED) {
+//               locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+//           } else {
+//               locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+//           }
+//        }
+//        Log.d("debug", "location!!");
+//        currentlocation cl = new currentlocation(getContext());
+//        location = cl.getLocation();
+//        Log.d("debug", "location!!");
+//        lat = cl.getlat(location);
+//        longt = cl.getlog(location);
+//        latitude = Double.toString(location.getLatitude());
+//        longitude = Double.toString(location.getLongitude());
+//        new DataLongOperationAsynchTask().execute();
+
     }
+
+//    @Override
+//    public void onLocationChanged(Location location) {
+//        lat = location.getLatitude();
+//        longt = location.getLongitude();
+//        latitude = Double.toString(location.getLatitude());
+//        longitude = Double.toString(location.getLongitude());
+//    }
+//    @Override
+//    public void onProviderDisabled(String provider) {
+//        Log.d("Latitude","disable");
+//    }
+//
+//    @Override
+//    public void onProviderEnabled(String provider) {
+//        Log.d("Latitude","enable");
+//    }
+//
+//    @Override
+//    public void onStatusChanged(String provider, int status, Bundle extras) {
+//        Log.d("Latitude","status");
+//    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(getContext());
         mGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.7484,-73.9857)).title("lol").snippet("I found a rat!"));
-        CameraPosition rat = CameraPosition.builder().target(new LatLng(40.7484,-73.9857)).zoom(16).bearing(0).tilt(45).build();
-
-//        //The place where the loop to pin all the rats is
-//        List<Rat> rats = Database.getInstance().getRats();
-//        Geocoder gc = new Geocoder(getView().getContext());
-//        for(Rat i : rats) {
-//            MarkerOptions toAdd = i.getMarker(gc);
-//            if (toAdd != null) {
-//                Log.d("LocationFragment","Rat" + toAdd.getPosition().latitude + toAdd.getPosition().longitude);
-//                googleMap.addMarker(i.getMarker(gc));
-//            }
+//        googleMap.addMarker(new MarkerOptions().position(new LatLng(0,0)).title("lol").snippet("I found a rat!"));
+//        if (ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+//                == PackageManager.PERMISSION_GRANTED) {
+//            mGoogleMap.setMyLocationEnabled(true);
 //
+//        } else {
+//            Toast.makeText(getActivity(), "Map Available", Toast.LENGTH_LONG).show();
+//            if (ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+//                    == PackageManager.PERMISSION_GRANTED) {
+//                mGoogleMap.setMyLocationEnabled(true);
+////                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,longt)).title("lol").snippet("I found a rat!"));
+//
+//            }
 //        }
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(40,-73)).title("lol").snippet("I found a rat!"));
+        CameraPosition rat = CameraPosition.builder().target(new LatLng(40,-73)).zoom(16).bearing(0).tilt(45).build();
+
+
+
+        List<Rat> rats = Database.getInstance().getRats();
+        Geocoder gc = new Geocoder(getView().getContext());
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        java.util.Calendar c = java.util.Calendar.getInstance();
+        for(Rat i : rats) {
+            String ratdate = i.getCreate_date();
+            String report = ratdate.substring(0,10);
+            Date date1 = null;
+            try {
+                date1 = sdf.parse("09/03/2012");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Date date2 = null;
+            try {
+                date2 = sdf.parse("09/05/2012");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Log.d("date", ratdate);
+            if (!(ratdate.equals(null))) {
+                Date reportdate = c.getTime();
+                try {
+                    reportdate = sdf.parse(report);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+//                Date before = c.getTime();
+//                try {
+//                    before = sdf.parse(todate);
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+//                Date after = c.getTime();
+//                try {
+//                    after = sdf.parse(fromdate);
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+                if (reportdate.before(date2) && reportdate.after(date1)) {
+                    MarkerOptions toAdd = i.getMarker(gc);
+                    if (toAdd != null) {
+                        Log.d("LocationFragment","Rat" + toAdd.getPosition().latitude + toAdd.getPosition().longitude);
+                        googleMap.addMarker(i.getMarker(gc));
+                    }
+                }
+//
+//
+            }
+
+
+
+
+        }
 
         googleMap.moveCamera((CameraUpdateFactory.newCameraPosition(rat)));
+
 
     }
 
