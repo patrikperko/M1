@@ -75,6 +75,8 @@ public class activity_loginsuccessful extends AppCompatActivity {
                         selectedFragment = location_fragment.newInstance();
                         Log.d("LocationFragment","test437");
                         break;
+                    case R.id.graphbutton:
+                        selectedFragment = Graph_Fragment.newInstance();
                     default:
                         break;
                 }

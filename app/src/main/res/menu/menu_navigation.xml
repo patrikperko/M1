@@ -22,6 +22,11 @@
         android:id="@+id/locationbutton"
         android:icon = "@drawable/ic_location"
         app:showAsAction="ifRoom"/>
+    <item
+        android:title="HISTORY GRAPH"
+        android:id="@+id/graphbutton"
+        android:icon = "@drawable/ic_graph"
+        app:showAsAction="ifRoom"/>
 
 
 
