@@ -44,7 +44,7 @@
         />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/graphButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/startdate"
@@ -56,7 +56,7 @@
 
     <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
-        android:layout_below="@id/button2"
+        android:layout_below="@id/graphButton"
         android:layout_height="200dip"
         android:id="@+id/graph" />
 </RelativeLayout>
