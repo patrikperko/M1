@@ -1,11 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/graphfragment"
-    tools:context="edu.gatech.cs1332.ratattack.controller.Graph_Fragment"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
-</android.support.constraint.ConstraintLayout>
+    tools:context="edu.gatech.cs1332.ratattack.controller.Graph_Fragment">
+
+
+
+    <TextView
+        android:id="@+id/fromdate"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:fontFamily="sans-serif"
+        android:text="From"
+        android:textStyle="bold" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id = "@+id/startdate"
+        android:textSize = "20sp"
+        android:hint = "Select StartDate"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/fromdate"
+        android:layout_toEndOf="@+id/fromdate" />
+    <TextView
+        android:layout_toRightOf = "@id/startdate"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentTop = "true"
+        android:text=" To "
+        android:id = "@+id/todate"
+        android:textStyle="bold"
+        />
+    <EditText
+        android:layout_toRightOf = "@id/todate"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textSize = "20sp"
+        android:hint = "Select EndDate"
+        android:id = "@+id/enddate"
+        />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startdate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="98dp"
+        android:background="@drawable/shape"
+        android:text="Graph"
+        android:textColor="@android:color/background_light" />
+</RelativeLayout>
