@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import edu.gatech.cs1332.ratattack.R;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 /**
  * Created by Patrik on 11/1/2017.
@@ -64,5 +67,13 @@ public class Graph_Fragment extends Fragment {
                 dialog.show(getActivity().getFragmentManager(),DATE);
             }
         });
+
+        GraphView graph = (GraphView) graphView.findViewById(R.id.graph);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3)
+        });
+        graph.addSeries(series);
     }
 }
