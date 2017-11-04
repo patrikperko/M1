@@ -8,3 +8,6 @@
 /captures
 .externalNativeBuild
 .idea/misc.xml
+app/build.gradle
+app/src/main/java/edu/gatech/cs1332/ratattack/controller/location_fragment.java
+app/build.gradle
