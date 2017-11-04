@@ -59,4 +59,36 @@
         android:layout_below="@id/graphButton"
         android:layout_height="200dip"
         android:id="@+id/graph" />
+
+    <RadioGroup
+        android:id="@+id/select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/graphButton" >
+
+        <RadioButton
+            android:id="@+id/Month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/fromdate"
+            android:layout_marginTop="11dp"
+            android:layout_weight="1"
+            android:text="Month" />
+
+        <RadioButton
+            android:id="@+id/Year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/Month"
+            android:layout_marginTop="13dp"
+            android:layout_weight="1"
+            android:text="Year" />
+    </RadioGroup>
+
 </RelativeLayout>
