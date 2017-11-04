@@ -1,11 +1,6 @@
 package edu.gatech.cs1332.ratattack.model;
 import edu.gatech.cs1332.ratattack.USERTYPE;
 /**
- * Created by Brent on 10/1/2017.
- */
-
-
-/**
  * A user class that represents a user in the database.
  */
 public class User {
