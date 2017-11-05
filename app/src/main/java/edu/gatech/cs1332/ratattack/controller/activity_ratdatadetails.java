@@ -28,6 +28,6 @@ public class activity_ratdatadetails extends AppCompatActivity {
         TextView borough = (TextView) findViewById(R.id.key);
         borough.setText(details.getBorough());
         TextView coord = (TextView) findViewById(R.id.coordinates);
-        coord.setText("Longitude: " + details.getLongtitude() + "Latitude: " + details.getLatitude());
+        coord.setText("Longitude: " + details.getLongitude() + "Latitude: " + details.getLatitude());
     }
 }

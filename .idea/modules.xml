@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://C:\CS\Rat-Attack\GraphViewLibrary\GraphViewLibrary.iml" filepath="C:\CS\Rat-Attack\GraphViewLibrary\GraphViewLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/GraphViewLibrary/GraphViewLibrary.iml" filepath="$PROJECT_DIR$/GraphViewLibrary/GraphViewLibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/GraphViewLibrary/GraphViewLibrary.iml" filepath="$PROJECT_DIR$/GraphViewLibrary/GraphViewLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/Rat-Attack.iml" filepath="$PROJECT_DIR$/Rat-Attack.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
