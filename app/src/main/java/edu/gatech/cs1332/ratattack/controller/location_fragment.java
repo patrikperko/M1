@@ -108,7 +108,8 @@ public class location_fragment extends Fragment implements OnMapReadyCallback{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        fromdate = "09/03/2012";
+        todate = "09/05/2012";
         final EditText startdate = (EditText)mView.findViewById(R.id.startdate);
         startdate.setKeyListener(null);
         startdate.setOnClickListener(new View.OnClickListener(){
@@ -206,7 +207,6 @@ public class location_fragment extends Fragment implements OnMapReadyCallback{
         CameraPosition rat = CameraPosition.builder().target(new LatLng(40.7484,-73.9857)).zoom(16).bearing(0).tilt(45).build();
 
 
-
         List<Rat> rats = Database.getInstance().getRats();
         Geocoder gc = new Geocoder(getView().getContext());
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -214,18 +214,6 @@ public class location_fragment extends Fragment implements OnMapReadyCallback{
         for(Rat i : rats) {
             String ratdate = i.getCreate_date();
             String report = ratdate.substring(0,10);
-            Date date1 = null;
-            try {
-                date1 = sdf.parse("09/03/2012");
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            Date date2 = null;
-            try {
-                date2 = sdf.parse("09/05/2012");
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
             //Log.d("date", report);
             if (!(ratdate.equals(null))) {
                 Date reportdate = c.getTime();
@@ -236,19 +224,19 @@ public class location_fragment extends Fragment implements OnMapReadyCallback{
                     System.out.println("cannot parse");
                     e.printStackTrace();
                 }
-//                Date before = c.getTime();
-//                try {
-//                    before = sdf.parse(todate);
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//                Date after = c.getTime();
-//                try {
-//                    after = sdf.parse(fromdate);
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-                if (reportdate.before(date2) && reportdate.after(date1)) {
+                Date before = c.getTime();
+                try {
+                    before = sdf.parse(todate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Date after = c.getTime();
+                try {
+                    after = sdf.parse(fromdate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if (reportdate.before(before) && reportdate.after(after)) {
                     System.out.println("works");
                     MarkerOptions toAdd = i.getMarker(gc);
                     if (toAdd != null) {
@@ -256,17 +244,9 @@ public class location_fragment extends Fragment implements OnMapReadyCallback{
                         googleMap.addMarker(i.getMarker(gc));
                     }
                 }
-//
-//
             }
-
-
-
-
         }
-
         googleMap.moveCamera((CameraUpdateFactory.newCameraPosition(rat)));
-
 
     }
 

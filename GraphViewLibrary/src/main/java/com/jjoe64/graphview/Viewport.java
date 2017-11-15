@@ -1,4 +1,4 @@
-/**
+/*
  * GraphView
  * Copyright 2016 Jonas Gehring
  *
@@ -287,7 +287,7 @@ public class Viewport {
         }
     };
 
-    /**
+    /*
      * simple gesture listener to track scroll events
      */
     private final GestureDetector.SimpleOnGestureListener mGestureListener
@@ -317,8 +317,7 @@ public class Viewport {
             }
             if (!mIsScrollable || mScalingActive) return false;
 
-            // Scrolling uses math based on the viewport (as opposed to math using pixels).
-            /**
+            /*
              * Pixel offset is the offset in screen pixels, while viewport offset is the
              * offset within the current viewport. For additional information on surface sizes
              * and pixel offsets, see the docs for {@link computeScrollSurfaceSize()}. For
@@ -453,11 +452,11 @@ public class Viewport {
         }
     };
 
-    /**
+    /*
      * the state of the axis bounds
      */
     public enum AxisBoundsStatus {
-        /**
+        /*
          * initial means that the bounds gets
          * auto adjusted if they are not manual.
          * After adjusting the status comes to
@@ -465,165 +464,165 @@ public class Viewport {
          */
         INITIAL,
 
-        /**
+        /*
          * after the bounds got auto-adjusted,
          * this status will set.
          */
         AUTO_ADJUSTED,
 
-        /**
+        /*
          * means that the bounds are fix (manually) and
          * are not to be auto-adjusted.
          */
         FIX
     }
 
-    /**
+    /*
      * paint to draw background
      */
     private Paint mPaint;
 
-    /**
+    /*
      * reference to the graphview
      */
     private final GraphView mGraphView;
 
-    /**
+    /*
      * this holds the current visible viewport
      * left = minX, right = maxX
      * bottom = minY, top = maxY
      */
     protected RectD mCurrentViewport = new RectD();
 
-    /**
+    /*
      * maximum allowed viewport size (horizontal)
      * 0 means use the bounds of the actual data that is
      * available
      */
     protected double mMaxXAxisSize = 0;
 
-    /**
+    /*
      * maximum allowed viewport size (vertical)
      * 0 means use the bounds of the actual data that is
      * available
      */
     protected double mMaxYAxisSize = 0;
 
-    /**
+    /*
      * this holds the whole range of the data
      * left = minX, right = maxX
      * bottom = minY, top = maxY
      */
     protected RectD mCompleteRange = new RectD();
 
-    /**
+    /*
      * flag whether scaling is currently active
      */
     protected boolean mScalingActive;
 
-    /**
+    /*
      * flag whether the viewport is scrollable
      */
     private boolean mIsScrollable;
 
-    /**
+    /*
      * flag whether the viewport is scalable
      */
     private boolean mIsScalable;
 
-    /**
+    /*
      * flag whether the viewport is scalable
      * on the Y axis
      */
     private boolean scrollableY;
 
-    /**
+    /*
      * gesture detector to detect scrolling
      */
     protected GestureDetector mGestureDetector;
 
-    /**
+    /*
      * detect scaling
      */
     protected ScaleGestureDetector mScaleGestureDetector;
 
-    /**
+    /*
      * not used - for fling
      */
     protected OverScroller mScroller;
 
-    /**
+    /*
      * not used
      */
     private EdgeEffectCompat mEdgeEffectTop;
 
-    /**
+    /*
      * not used
      */
     private EdgeEffectCompat mEdgeEffectBottom;
 
-    /**
+    /*
      * glow effect when scrolling left
      */
     private EdgeEffectCompat mEdgeEffectLeft;
 
-    /**
+    /*
      * glow effect when scrolling right
      */
     private EdgeEffectCompat mEdgeEffectRight;
 
-    /**
+    /*
      * state of the x axis
      */
     protected AxisBoundsStatus mXAxisBoundsStatus;
 
-    /**
+    /*
      * state of the y axis
      */
     protected AxisBoundsStatus mYAxisBoundsStatus;
 
-    /**
+    /*
      * flag whether the x axis bounds are manual
      */
     private boolean mXAxisBoundsManual;
 
-    /**
+    /*
      * flag whether the y axis bounds are manual
      */
     private boolean mYAxisBoundsManual;
 
-    /**
+    /*
      * background color of the viewport area
      * it is recommended to use a semi-transparent color
      */
     private int mBackgroundColor;
 
-    /**
+    /*
      * listener to notify when x bounds changed after
      * scaling or scrolling.
      * This can be used to load more detailed data.
      */
     protected OnXAxisBoundsChangedListener mOnXAxisBoundsChangedListener;
 
-    /**
+    /*
      * optional draw a border between the labels
      * and the viewport
      */
     private boolean mDrawBorder;
 
-    /**
+    /*
      * color of the border
      * @see #setDrawBorder(boolean)
      */
     private Integer mBorderColor;
 
-    /**
+    /*
      * custom paint to use for the border
      * @see #setDrawBorder(boolean)
      */
     private Paint mBorderPaint;
 
-    /**
+    /*
      * creates the viewport
      *
      * @param graphView graphview
@@ -644,7 +643,7 @@ public class Viewport {
         mPaint = new Paint();
     }
 
-    /**
+    /*
      * will be called on a touch event.
      * needed to use scaling and scrolling
      *
@@ -670,7 +669,7 @@ public class Viewport {
         return b;
     }
 
-    /**
+    /*
      * change the state of the x axis.
      * normally you do not call this method.
      * If you want to set manual axis use
@@ -682,7 +681,7 @@ public class Viewport {
         mXAxisBoundsStatus = s;
     }
 
-    /**
+    /*
      * change the state of the y axis.
      * normally you do not call this method.
      * If you want to set manual axis use
@@ -694,35 +693,35 @@ public class Viewport {
         mYAxisBoundsStatus = s;
     }
 
-    /**
+    /*
      * @return whether the viewport is scrollable
      */
     public boolean isScrollable() {
         return mIsScrollable;
     }
 
-    /**
+    /*
      * @param mIsScrollable whether is viewport is scrollable
      */
     public void setScrollable(boolean mIsScrollable) {
         this.mIsScrollable = mIsScrollable;
     }
 
-    /**
+    /*
      * @return the x axis state
      */
     public AxisBoundsStatus getXAxisBoundsStatus() {
         return mXAxisBoundsStatus;
     }
 
-    /**
+    /*
      * @return the y axis state
      */
     public AxisBoundsStatus getYAxisBoundsStatus() {
         return mYAxisBoundsStatus;
     }
 
-    /**
+    /*
      * caches the complete range (minX, maxX, minY, maxY)
      * by iterating all series and all datapoints and
      * stores it into #mCompleteRange
@@ -828,7 +827,7 @@ public class Viewport {
         if (mCurrentViewport.top == mCurrentViewport.bottom) mCurrentViewport.top++;
     }
 
-    /**
+    /*
      * @param completeRange     if true => minX of the complete range of all series
      *                          if false => minX of the current visible viewport
      * @return the min x value
@@ -841,7 +840,7 @@ public class Viewport {
         }
     }
 
-    /**
+    /*
      * @param completeRange     if true => maxX of the complete range of all series
      *                          if false => maxX of the current visible viewport
      * @return the max x value
@@ -854,7 +853,7 @@ public class Viewport {
         }
     }
 
-    /**
+    /*
      * @param completeRange     if true => minY of the complete range of all series
      *                          if false => minY of the current visible viewport
      * @return the min y value
@@ -867,7 +866,7 @@ public class Viewport {
         }
     }
 
-    /**
+    /*
      * @param completeRange     if true => maxY of the complete range of all series
      *                          if false => maxY of the current visible viewport
      * @return the max y value
@@ -880,7 +879,7 @@ public class Viewport {
         }
     }
 
-    /**
+    /*
      * set the maximal y value for the current viewport.
      * Make sure to set the y bounds to manual via
      * {@link #setYAxisBoundsManual(boolean)}
@@ -890,7 +889,7 @@ public class Viewport {
         mCurrentViewport.top = y;
     }
 
-    /**
+    /*
      * set the minimal y value for the current viewport.
      * Make sure to set the y bounds to manual via
      * {@link #setYAxisBoundsManual(boolean)}
@@ -900,7 +899,7 @@ public class Viewport {
         mCurrentViewport.bottom = y;
     }
 
-    /**
+    /*
      * set the maximal x value for the current viewport.
      * Make sure to set the x bounds to manual via
      * {@link #setXAxisBoundsManual(boolean)}
@@ -910,7 +909,7 @@ public class Viewport {
         mCurrentViewport.right = x;
     }
 
-    /**
+    /*
      * set the minimal x value for the current viewport.
      * Make sure to set the x bounds to manual via
      * {@link #setXAxisBoundsManual(boolean)}
@@ -920,7 +919,7 @@ public class Viewport {
         mCurrentViewport.left = x;
     }
 
-    /**
+    /*
      * release the glowing effects
      */
     private void releaseEdgeEffects() {
@@ -930,7 +929,7 @@ public class Viewport {
         mEdgeEffectBottom.onRelease();
     }
 
-    /**
+    /*
      * not used currently
      *
      * @param velocityX
@@ -957,13 +956,13 @@ public class Viewport {
         ViewCompat.postInvalidateOnAnimation(mGraphView);
     }
 
-    /**
+    /*
      * not used currently
      */
     public void computeScroll() {
     }
 
-    /**
+    /*
      * Draws the overscroll "glow" at the four edges of the chart region, if necessary.
      *
      * @see EdgeEffectCompat
@@ -1022,7 +1021,7 @@ public class Viewport {
         }
     }
 
-    /**
+    /*
      * will be first called in order to draw
      * the canvas
      * Used to draw the background
@@ -1076,7 +1075,7 @@ public class Viewport {
         }
     }
 
-    /**
+    /*
      * draws the glowing edge effect
      *
      * @param c canvas

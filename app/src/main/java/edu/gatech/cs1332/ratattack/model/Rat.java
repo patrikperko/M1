@@ -24,7 +24,7 @@ public class Rat implements Parcelable {
     private String city;
     private String borough;
     private String Latitude;
-    private String Longtitude;
+    private String Longitude;
 
 
     /**
@@ -49,7 +49,7 @@ public class Rat implements Parcelable {
         city = cy;
         borough = bh;
         Latitude = lat;
-        Longtitude = lon;
+        Longitude = lon;
     }
 
     public String getUniquekey() {
@@ -162,17 +162,17 @@ public class Rat implements Parcelable {
     }
 
     /**
-     * @return Longtitude the Longtitude of the sighting
+     * @return Longitude the Longitude of the sighting
      */
-    public String getLongtitude() {
-        return Longtitude;
+    public String getLongitude() {
+        return Longitude;
     }
 
     /**
-     * @param Longtitude the Longtitude of the sighting
+     * @param Longitude the Longitude of the sighting
      */
-    public void setLongtitude(String Longtitude) {
-        this.Longtitude = Longtitude;
+    public void setLongitude(String Longitude) {
+        this.Longitude = Longitude;
     }
 
 //    @Override
@@ -196,7 +196,7 @@ public class Rat implements Parcelable {
         parcel.writeString(city);
         parcel.writeString(borough);
         parcel.writeString(Latitude);
-        parcel.writeString(Longtitude);
+        parcel.writeString(Longitude);
     }
 
     public Rat(Parcel in) {
@@ -208,7 +208,7 @@ public class Rat implements Parcelable {
         city = in.readString();
         borough = in.readString();
         Latitude = in.readString();
-        Longtitude = in.readString();
+        Longitude = in.readString();
     }
 
     public static final Parcelable.Creator<Rat> CREATOR = new Parcelable.Creator<Rat>() {
@@ -229,7 +229,7 @@ public class Rat implements Parcelable {
     public boolean validLoc() {
         try {
             Double.parseDouble(Latitude);
-            Double.parseDouble(Longtitude);
+            Double.parseDouble(Longitude);
         } catch (NumberFormatException e) {
             return false;
         }
@@ -243,7 +243,7 @@ public class Rat implements Parcelable {
         double lon = 0;
         if (validLoc()) {
             lat = Double.parseDouble(Latitude);
-            lon = Double.parseDouble(Longtitude);
+            lon = Double.parseDouble(Longitude);
         } else {
             //geocoder stuff
             List<Address> add = null;

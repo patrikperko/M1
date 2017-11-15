@@ -14,7 +14,7 @@ import edu.gatech.cs1332.ratattack.model.Databasestore;
 
 /**
  * The login activity used to allow an existing user to access the
- * loginsuccessful activity
+ * login successful activity
  */
 public class LoginActivity extends AppCompatActivity {
     Databasestore search = new Databasestore(this);

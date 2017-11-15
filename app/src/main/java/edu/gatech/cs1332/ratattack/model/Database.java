@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Brent on 10/1/2017.
- */
-
-/**
  * A database singleton that keeps track of all users
  */
 public class Database {

@@ -18,13 +18,13 @@ import edu.gatech.cs1332.ratattack.model.Databasestore;
 import edu.gatech.cs1332.ratattack.model.User;
 import edu.gatech.cs1332.ratattack.USERTYPE;
 /**
- * The signup activity used to add a user to the database.
+ * The sign up activity used to add a user to the database.
  */
 public class activity_signup extends AppCompatActivity {
 
     Databasestore store = new Databasestore(this);
     /**
-     * Creates a signup activity, allowing a new user to create login credentials
+     * Creates a sign up activity, allowing a new user to create login credentials
      * by filling out EditText fields and setting listeners for the Sign-up and
      * Cancel Buttons.
      *
