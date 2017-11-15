@@ -18,7 +18,7 @@ public class Database {
     private List<User> users;
     private List<Rat> rats;
 
-    Database() {
+    public Database() {
         users = new ArrayList<>();
         rats = new ArrayList<>();
     }
