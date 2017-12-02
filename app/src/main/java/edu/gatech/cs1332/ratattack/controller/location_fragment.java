@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
@@ -70,7 +71,7 @@ import edu.gatech.cs1332.ratattack.model.Database;
 import edu.gatech.cs1332.ratattack.model.Rat;
 
 
-public class location_fragment extends Fragment implements OnMapReadyCallback{
+public class location_fragment extends Fragment implements OnMapReadyCallback {
     GoogleMap mGoogleMap;
     MapView mMapView;
     View mView;
@@ -118,6 +119,7 @@ public class location_fragment extends Fragment implements OnMapReadyCallback{
                 Datepicker dialog = new Datepicker(v);
                 fromdate = dialog.gettxtdate();
                 dialog.show(getActivity().getFragmentManager(),DIALOG_DATE);
+                update();
             }
         });
         final EditText enddate = (EditText)mView.findViewById(R.id.enddate);
@@ -128,6 +130,7 @@ public class location_fragment extends Fragment implements OnMapReadyCallback{
                 Datepicker dialog = new Datepicker(v);
                 todate = dialog.gettxtdate();
                 dialog.show(getActivity().getFragmentManager(),DIALOG_DATE2);
+                update();
             }
         });
 
@@ -186,6 +189,8 @@ public class location_fragment extends Fragment implements OnMapReadyCallback{
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        setMap(googleMap);
+        /*
         MapsInitializer.initialize(getContext());
         mGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -247,7 +252,76 @@ public class location_fragment extends Fragment implements OnMapReadyCallback{
             }
         }
         googleMap.moveCamera((CameraUpdateFactory.newCameraPosition(rat)));
+        */
+    }
 
+    private void setMap(GoogleMap googleMap) {
+        MapsInitializer.initialize(getContext());
+        mGoogleMap = googleMap;
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//        googleMap.addMarker(new MarkerOptions().position(new LatLng(0,0)).title("lol").snippet("I found a rat!"));
+//        if (ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+//                == PackageManager.PERMISSION_GRANTED) {
+//            mGoogleMap.setMyLocationEnabled(true);
+//
+//        } else {
+//            Toast.makeText(getActivity(), "Map Available", Toast.LENGTH_LONG).show();
+//            if (ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+//                    == PackageManager.PERMISSION_GRANTED) {
+//                mGoogleMap.setMyLocationEnabled(true);
+////                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,longt)).title("lol").snippet("I found a rat!"));
+//
+//            }
+//        }
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.7484,-73.9857)).title("lol").snippet("I found a rat!"));
+        CameraPosition rat = CameraPosition.builder().target(new LatLng(40.7484,-73.9857)).zoom(16).bearing(0).tilt(45).build();
+
+
+        List<Rat> rats = Database.getInstance().getRats();
+        Geocoder gc = new Geocoder(getView().getContext());
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        java.util.Calendar c = java.util.Calendar.getInstance();
+        for(Rat i : rats) {
+            String ratdate = i.getCreate_date();
+            String report = ratdate.substring(0,10);
+            //Log.d("date", report);
+            if (!(ratdate.equals(null))) {
+                Date reportdate = c.getTime();
+                try {
+                    reportdate = sdf.parse(report);
+
+                } catch (ParseException e) {
+                    System.out.println("cannot parse");
+                    e.printStackTrace();
+                }
+                Date before = c.getTime();
+                try {
+                    before = sdf.parse(todate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Date after = c.getTime();
+                try {
+                    after = sdf.parse(fromdate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if (reportdate.before(before) && reportdate.after(after)) {
+                    System.out.println("works");
+                    MarkerOptions toAdd = i.getMarker(gc);
+                    if (toAdd != null) {
+                        Log.d("LocationFragment","Rat" + toAdd.getPosition().latitude + toAdd.getPosition().longitude);
+                        googleMap.addMarker(i.getMarker(gc));
+                    }
+                }
+            }
+        }
+        googleMap.moveCamera((CameraUpdateFactory.newCameraPosition(rat)));
+    }
+
+    public void update() {
+        mGoogleMap.clear();
+        setMap(mGoogleMap);
     }
 
 }

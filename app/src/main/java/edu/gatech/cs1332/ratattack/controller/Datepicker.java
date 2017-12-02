@@ -1,8 +1,10 @@
 package edu.gatech.cs1332.ratattack.controller;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -14,7 +16,7 @@ import android.widget.EditText;
  * Created by ziwei on 10/31/17.
  */
 
-public class Datepicker extends DialogFragment implements DatePickerDialog.OnDateSetListener{
+public class Datepicker extends DialogFragment implements DatePickerDialog.OnDateSetListener {
     EditText txtDate;
     String strdate;
     public Datepicker(View v){
