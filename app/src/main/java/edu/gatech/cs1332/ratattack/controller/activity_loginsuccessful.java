@@ -1,5 +1,6 @@
 package edu.gatech.cs1332.ratattack.controller;
 
+import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentTransaction;
 import android.net.Uri;
@@ -23,10 +24,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.cs1332.ratattack.R;
+import edu.gatech.cs1332.ratattack.USERTYPE;
 import edu.gatech.cs1332.ratattack.model.Database;
 import edu.gatech.cs1332.ratattack.model.Rat;
+import edu.gatech.cs1332.ratattack.model.User;
+
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
+
 
 /**
  * The loginsuccessful activity that serves as a landing activity for the login activity.
@@ -77,6 +83,7 @@ public class activity_loginsuccessful extends AppCompatActivity {
                         break;
                     case R.id.graphbutton:
                         selectedFragment = Graph_Fragment.newInstance();
+                        break;
                     default:
                         break;
                 }
@@ -88,7 +95,28 @@ public class activity_loginsuccessful extends AppCompatActivity {
             }
         });
 
-
+        String username = getIntent().getStringExtra("Username");
+        USERTYPE perm = USERTYPE.Admin;
+        for (User u : Database.getInstance().getUsers()) {
+            if (u.getName().equals(username)) {
+                perm = u.getUseridentity();
+            }
+        }
+        if (perm == USERTYPE.Admin) {
+            Button adminButton = new Button(this);
+            adminButton.setText("Admin");
+            adminButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.loginsuccessful_layout, Admin_Fragment.newInstance());
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            });
+            RelativeLayout thing = (RelativeLayout)findViewById(R.id.loginsuccessful);
+            thing.addView(adminButton);
+        }
 
         new CSVFile().execute();
     }

@@ -58,4 +58,30 @@ public class Database {
         return false;
     }
 
+    public boolean userExists(String username) {
+        for (User u : users) {
+            if (u.getName().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean userIsBanned(String username) {
+        for (User u : users) {
+            if (u.getName().equals(username)) {
+                return u.isBanned();
+            }
+        }
+        return false;
+    }
+
+    public void setBan(String username, boolean whatDo) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getName().equals(username)) {
+                users.get(i).setBan(whatDo);
+                return;
+            }
+        }
+    }
 }

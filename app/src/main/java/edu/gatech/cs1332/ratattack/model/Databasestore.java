@@ -70,5 +70,4 @@ public class Databasestore extends SQLiteOpenHelper{
         }
         return cursorpass;
     }
-
 }

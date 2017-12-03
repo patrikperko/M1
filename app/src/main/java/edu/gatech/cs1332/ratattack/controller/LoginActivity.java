@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import edu.gatech.cs1332.ratattack.R;
 import edu.gatech.cs1332.ratattack.model.Database;
 import edu.gatech.cs1332.ratattack.model.Databasestore;
+import edu.gatech.cs1332.ratattack.model.User;
 
 /**
  * The login activity used to allow an existing user to access the
@@ -55,6 +57,14 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 if(pass.equals(password1)) {
+                    if (Database.getInstance().userIsBanned(username1)) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                        builder.setTitle("Banned Account");
+                        builder.setMessage("Your account has been marked as banned. Please contact customer support for further details.");
+                        builder.setPositiveButton("OK", null);
+                        AlertDialog dialog = builder.show();
+                        return;
+                    }
                     Intent i = new Intent(LoginActivity.this,activity_loginsuccessful.class);
                     i.putExtra("Username",username1);
                     LoginActivity.this.startActivity(i);
