@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.gatech.cs1332.ratattack.controller.activity_signup">
+    tools:context="edu.gatech.cs1332.ratattack.controller.activity_signup"
+    android:background="@drawable/bg1"
+    >
 
     <TextView
         android:id="@+id/textView9"
@@ -17,8 +19,8 @@
         tools:layout_editor_absoluteY="16dp"
         android:layout_marginTop="12dp"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/textView12"
-        android:layout_alignEnd="@+id/textView12" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/textView10"
@@ -40,10 +42,12 @@
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="100dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp"
         android:layout_below="@+id/textView10"
-        android:layout_alignLeft="@+id/emailButton"
-        android:layout_alignStart="@+id/emailButton" />
+        android:layout_alignLeft="@+id/textView9"
+        android:layout_alignStart="@+id/textView9" />
 
     <TextView
         android:id="@+id/textView11"
@@ -140,7 +144,8 @@
         android:inputType="textEmailAddress"
         android:layout_marginTop="12dp"
         android:layout_below="@+id/textView11"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_alignStart="@+id/textView11" />
 
     <TextView
         android:id="@+id/textView15"
