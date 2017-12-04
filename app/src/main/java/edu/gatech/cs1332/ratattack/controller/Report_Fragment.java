@@ -25,6 +25,8 @@ public class Report_Fragment extends Fragment {
     private EditText addressText;
     private EditText cityText;
     private EditText boroughText;
+    private EditText latitudeText;
+    private EditText longitudeText;
     //private EditText keyText;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class Report_Fragment extends Fragment {
         addressText = (EditText) rootView.findViewById(R.id.address);
         cityText = (EditText) rootView.findViewById(R.id.city);
         boroughText = (EditText) rootView.findViewById(R.id.borough);
+        latitudeText =(EditText) rootView.findViewById(R.id.latitude);
+        longitudeText = (EditText) rootView.findViewById(R.id.longitude);
+
         //keyText = (EditText) rootView.findViewById(R.id.key);
         final Button report = (Button) rootView.findViewById(R.id.report);
         final Button cancel = (Button) rootView.findViewById(R.id.reportcancel);
@@ -56,7 +61,7 @@ public class Report_Fragment extends Fragment {
 //                    boroughText.getText().toString().trim().length() > 0 && keyText.getText().toString().trim().length() > 0) {
                 Rat newRat = new Rat(uniquekey, DateFormat.getDateInstance().format(new Date()), locationText.getText()
                         .toString(), zipText.getText().toString(), addressText.getText().toString(), cityText.getText().toString(),
-                        boroughText.getText().toString(), null, null);
+                        boroughText.getText().toString(), latitudeText.getText().toString(), longitudeText.getText().toString());
                 Database.getInstance().addRat(newRat);
                 getActivity().getSupportFragmentManager().beginTransaction().remove(Report_Fragment.this).commit();
 
@@ -72,6 +77,8 @@ public class Report_Fragment extends Fragment {
                 addressText.setText(null);
                 cityText.setText(null);
                 boroughText.setText(null);
+                latitudeText.setText(null);
+                longitudeText.setText(null);
             }
         });
         return rootView;
