@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import edu.gatech.cs1332.ratattack.R;
 
@@ -15,6 +18,8 @@ import edu.gatech.cs1332.ratattack.R;
 public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private Button signUpButton;
+    Animation uptodown;
+    private ImageView logodisplay;
     @Override
     /*
      * Creates a main activity, adding button listeners for signup and login,
@@ -25,9 +30,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        logodisplay = (ImageView)findViewById(R.id.logodisplay);
         loginButton = (Button) findViewById(R.id.loginButton);
         signUpButton = (Button) findViewById(R.id.signUpButton);
-
+        uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
+        logodisplay.setAnimation(uptodown);
+        loginButton.setAnimation(uptodown);
+        signUpButton.setAnimation(uptodown);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,5 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(i);
             }
         });
+
     }
 }
