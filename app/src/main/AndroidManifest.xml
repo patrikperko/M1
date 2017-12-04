@@ -27,6 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
         <activity android:name=".controller.LoginActivity" />
         <activity android:name=".controller.activity_loginsuccessful" />
         <activity android:name=".controller.activity_signup" />
