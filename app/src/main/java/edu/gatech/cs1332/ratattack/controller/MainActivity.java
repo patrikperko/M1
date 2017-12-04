@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.loginButton);
         signUpButton = (Button) findViewById(R.id.signUpButton);
         uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
-        logodisplay.setAnimation(uptodown);
+        startrotatingImage();
         loginButton.setAnimation(uptodown);
         signUpButton.setAnimation(uptodown);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
         initializeControls();
         loginWithFB();
 
+    }
+    public void startrotatingImage() {
+        Animation startrotate = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.animation_rotate);
+        logodisplay.startAnimation(startrotate);
     }
     private void initializeControls() {
         callbackManager = CallbackManager.Factory.create();
