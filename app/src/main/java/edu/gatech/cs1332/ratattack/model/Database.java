@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Brent on 10/1/2017.
- */
-
-/**
  * A database singleton that keeps track of all users
  */
 public class Database {
@@ -18,7 +14,7 @@ public class Database {
     private List<User> users;
     private List<Rat> rats;
 
-    Database() {
+    public Database() {
         users = new ArrayList<>();
         rats = new ArrayList<>();
     }
@@ -37,7 +33,7 @@ public class Database {
     }
 
     public void addRat(Rat newRat) {
-        rats.add(newRat);
+        rats.add(0, newRat);
     }
 
     public List<Rat> getRats() {
@@ -62,4 +58,30 @@ public class Database {
         return false;
     }
 
+    public boolean userExists(String username) {
+        for (User u : users) {
+            if (u.getName().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean userIsBanned(String username) {
+        for (User u : users) {
+            if (u.getName().equals(username)) {
+                return u.isBanned();
+            }
+        }
+        return false;
+    }
+
+    public void setBan(String username, boolean whatDo) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getName().equals(username)) {
+                users.get(i).setBan(whatDo);
+                return;
+            }
+        }
+    }
 }

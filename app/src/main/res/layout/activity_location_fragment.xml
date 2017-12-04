@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loc_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.gatech.cs1332.ratattack.controller.location_fragment">
+
+    <TextView
+        android:id="@+id/fromdate"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:fontFamily="sans-serif"
+        android:text="From"
+        android:textStyle="bold" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id = "@+id/startdate"
+        android:textSize = "20sp"
+        android:hint = "Select StartDate"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/fromdate"
+        android:layout_toEndOf="@+id/fromdate" />
+    <TextView
+        android:layout_toRightOf = "@id/startdate"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentTop = "true"
+        android:text=" To "
+        android:id = "@+id/todate"
+        android:textStyle="bold"
+        />
+    <EditText
+        android:layout_toRightOf = "@id/todate"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textSize = "20sp"
+        android:hint = "Select EndDate"
+        android:id = "@+id/enddate"
+        />
+    <com.google.android.gms.maps.MapView
+        android:layout_below="@id/fromdate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map"
+
+        />
+
+
+</RelativeLayout>

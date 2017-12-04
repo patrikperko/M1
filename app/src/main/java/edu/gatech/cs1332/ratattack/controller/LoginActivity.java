@@ -8,15 +8,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import edu.gatech.cs1332.ratattack.R;
 import edu.gatech.cs1332.ratattack.model.Database;
 import edu.gatech.cs1332.ratattack.model.Databasestore;
+import edu.gatech.cs1332.ratattack.model.User;
 
 /**
  * The login activity used to allow an existing user to access the
- * loginsuccessful activity
+ * login successful activity
  */
 public class LoginActivity extends AppCompatActivity {
+    static int count = 0;
+    static boolean locked = false;
+
     Databasestore search = new Databasestore(this);
     /**
      * Creates a LoginActivity, adding login text fields and button listeners
@@ -40,7 +48,23 @@ public class LoginActivity extends AppCompatActivity {
                 String password1 = password.getText().toString();
                 String pass = search.searchPass(username1);
 //                Database data = Database.getInstance();
+                if (locked) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setTitle("Too many login attempts");
+                    builder.setMessage("After three loggin attempts, you're now locked out for a while");
+                    builder.setPositiveButton("OK", null);
+                    AlertDialog dialog = builder.show();
+                    return;
+                }
                 if(pass.equals(password1)) {
+                    if (Database.getInstance().userIsBanned(username1)) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                        builder.setTitle("Banned Account");
+                        builder.setMessage("Your account has been marked as banned. Please contact customer support for further details.");
+                        builder.setPositiveButton("OK", null);
+                        AlertDialog dialog = builder.show();
+                        return;
+                    }
                     Intent i = new Intent(LoginActivity.this,activity_loginsuccessful.class);
                     i.putExtra("Username",username1);
                     LoginActivity.this.startActivity(i);
@@ -50,6 +74,18 @@ public class LoginActivity extends AppCompatActivity {
                     builder.setMessage("try again :(");
                     builder.setPositiveButton("OK", null);
                     AlertDialog dialog = builder.show();
+                    LoginActivity.count++;
+                    if (count >= 3) {
+                        count = 0;
+                        locked = true;
+                        Timer thing = new Timer();
+                        TimerTask task = new TimerTask() {
+                            public void run() {
+                                locked = false;
+                            }
+                        };
+                        thing.schedule(task, 900000);
+                    }
                 }
 
             }

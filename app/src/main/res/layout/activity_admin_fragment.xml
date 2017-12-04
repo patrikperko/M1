@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.gatech.cs1332.ratattack.controller.Graph_Fragment">
+
+    <TextView
+        android:id="@+id/toputtexthere"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:fontFamily="sans-serif"
+        android:text="User"
+        android:textStyle="bold" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id = "@+id/toban"
+        android:textSize = "20sp"
+        android:hint = "Enter here"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/toputtexthere"
+        android:layout_toEndOf="@+id/toputtexthere" />
+
+    <Button
+        android:id="@+id/ban"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toputtexthere"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_toLeftOf="@+id/toputtexthere"
+        android:layout_toStartOf="@+id/toputtexthere"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/unban"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ban"
+        android:layout_alignEnd="@+id/toban"
+        android:layout_alignRight="@+id/toban"
+        android:text="Button" />
+
+</RelativeLayout>

@@ -13,7 +13,7 @@ public class readrat {
     private String city;
     private String borough;
     private String Latitude;
-    private String Longtitude;
+    private String Longitude;
     public String getUniquekey() {return uniquekey;}
     /**
      * @param uniquekey unique key of the column
@@ -92,14 +92,14 @@ public class readrat {
         this.Latitude = Latitude;
     }
     /**
-     * @return Longtitude the Longtitude of the sighting
+     * @return Longitude the Longitude of the sighting
      */
-    public String getLongtitude() {return Longtitude;}
+    public String getLongitude() {return Longitude;}
     /**
-     * @param Longtitude the Longtitude of the sighting
+     * @param Longitude the Longitude of the sighting
      */
-    public void setLongtitude(String Longtitude) {
-        this.Longtitude = Longtitude;
+    public void setLongitude(String Longitude) {
+        this.Longitude = Longitude;
     }
     @Override
     public String toString() {

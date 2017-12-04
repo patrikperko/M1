@@ -25,9 +25,9 @@ public class activity_ratdatadetails extends AppCompatActivity {
         loc.setText(details.getLocation_type());
         TextView address = (TextView) findViewById(R.id.address);
         address.setText(details.getIncident_address() + ", " + details.getIncident_zip() + ", " + details.getCity());
-        TextView borough = (TextView) findViewById(R.id.borough);
+        TextView borough = (TextView) findViewById(R.id.key);
         borough.setText(details.getBorough());
         TextView coord = (TextView) findViewById(R.id.coordinates);
-        coord.setText("Longitude: " + details.getLongtitude() + "Latitude: " + details.getLatitude());
+        coord.setText("Longitude: " + details.getLongitude() + "Latitude: " + details.getLatitude());
     }
 }

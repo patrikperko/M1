@@ -1,11 +1,6 @@
 package edu.gatech.cs1332.ratattack.model;
 import edu.gatech.cs1332.ratattack.USERTYPE;
 /**
- * Created by Brent on 10/1/2017.
- */
-
-
-/**
  * A user class that represents a user in the database.
  */
 public class User {
@@ -14,6 +9,7 @@ public class User {
     private String email;
     private String password;
     private USERTYPE useridentity;
+    private boolean banned = false;
 //    private int id;
 //    private static int nextid = 0;
 
@@ -65,5 +61,13 @@ public class User {
      * @return the identity of user
      */
     public USERTYPE getUseridentity() {return useridentity;}
+
+    public boolean isBanned() {
+        return banned;
+    }
+
+    public void setBan(boolean whatDo) {
+        banned = whatDo;
+    }
 //    public int getId() {return id;}
 }

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/reportfragment"
+    tools:context="edu.gatech.cs1332.ratattack.controller.Report_Fragment"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+
+    <EditText
+        android:id="@+id/borough"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/city"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city" />
+
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/usernameButton"
+        android:layout_alignStart="@+id/usernameButton"
+        android:layout_below="@+id/usernameButton"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="6dp"
+        android:text="Borough"
+        app:layout_constraintLeft_toLeftOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/city" />
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="23dp"
+        app:layout_constraintTop_toBottomOf="@+id/zipCode"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/zipCode"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/usernameButton"
+        android:layout_alignStart="@+id/usernameButton"
+        android:layout_below="@+id/usernameButton"
+        android:text="Address"
+        android:layout_marginTop="7dp"
+        app:layout_constraintTop_toBottomOf="@+id/zipCode"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/textView14" />
+
+    <EditText
+        android:id="@+id/zipCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/locationType"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/locationType"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/usernameButton"
+        android:layout_alignStart="@+id/usernameButton"
+        android:layout_below="@+id/usernameButton"
+        android:text="Zip Code"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/textView6"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/locationType" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_alignLeft="@+id/usernameButton"
+        android:layout_alignStart="@+id/usernameButton"
+        android:layout_below="@+id/usernameButton"
+        android:text="Location Type"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="52dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.033" />
+
+    <EditText
+        android:id="@+id/locationType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:layout_marginLeft="85dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="33dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <EditText
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/address"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/address"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/usernameButton"
+        android:layout_alignStart="@+id/usernameButton"
+        android:layout_below="@+id/usernameButton"
+        android:text="City"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@+id/address"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/textView16" />
+    <TextView
+        android:id = "@+id/latitudetextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Latitude"
+        android:layout_below="@+id/borough"
+        app:layout_constraintTop_toBottomOf="@+id/borough"
+        tools:layout_editor_absoluteX="60dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintLeft_toLeftOf="@+id/textView20"
+        />
+    <EditText
+        android:id = "@+id/latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below = "@+id/latitudetextview"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/borough"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/borough"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:ems="4"/>
+    <TextView
+        android:id = "@+id/longitudetextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Longitude"
+        android:layout_below="@+id/borough"
+        app:layout_constraintTop_toBottomOf="@+id/borough"
+        app:layout_constraintLeft_toRightOf="@+id/latitudetextview"
+        android:layout_marginTop="9dp"
+        android:layout_marginLeft="96dp" />
+    <EditText
+        android:id = "@+id/longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below = "@+id/longitudetextview"
+        android:ems="4"
+        app:layout_constraintTop_toBottomOf="@+id/longitudetextview"
+        app:layout_constraintLeft_toRightOf="@+id/latitude"
+        app:layout_constraintLeft_toLeftOf="@+id/longitudetextview"
+        app:layout_constraintHorizontal_bias="0.0"
+        />
+
+
+    <Button
+        android:id="@+id/reportcancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView15"
+        android:background="@drawable/shape"
+        android:text="Cancel"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintLeft_toRightOf="@+id/report"
+        android:layout_marginLeft="84dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="106dp"
+        app:layout_constraintTop_toBottomOf="@+id/borough" />
+
+    <Button
+        android:id="@+id/report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView15"
+        android:background="@drawable/shape"
+        android:text="Report"
+        android:textColor="@android:color/background_light"
+        android:layout_marginLeft="60dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="106dp"
+        app:layout_constraintTop_toBottomOf="@+id/borough" />
+</android.support.constraint.ConstraintLayout>
